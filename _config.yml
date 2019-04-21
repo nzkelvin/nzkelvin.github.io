@@ -1,0 +1,90 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+title: Kelvin Shen Blog Site | 沈煜博客
+email: kelvinshen AT outlook DOT com
+description: >- # this means to ignore newlines until "baseurl:"
+  IT Consultant | Developer | Dynamics | New Zealand | China | Microsoft | Dynamics | Power Platform | Azure | Technology | People | AI | Machine Learning
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://nzkelvin.github.io/index.html" # the base hostname & protocol for your site, e.g. http://example.com
+
+# Paginate
+#gems: [jekyll-paginate]
+#paginate: 10
+#paginate_path: "page:num"
+
+
+# Build settings
+# syntax highlighter
+#highlighter: pygments
+# markdown engine
+#markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+#relative_permalinks: true
+#permalink format
+permalink: /:year-:month-:day-:title.html
+
+favicon: /assets/image/favicon.ico
+
+# Author info
+author:
+  name: Kelvin Shen | 沈煜
+  email: kelvinshen AT outlook DOT com
+  link: http://lingxiankong.github.io/
+  github: https://github.com/nzkelvin
+  github_username: nzkelvin
+
+
+# locals:
+#   tags: 标签
+#   about: 关于
+#   active: 技术
+subscribe_rss: /pages/atom.xml
+
+avatar: /assets/image/avatar.png
+# avatar: http://7xpapo.com1.z0.glb.clouddn.com/blog/assets/image/favicon.ico
+
+# CSS files root path
+css: /assets/css/
+# css: http://7xpapo.com1.z0.glb.clouddn.com/blog/assets/css/
+
+# JS files root path
+js: /assets/js/
+# js: http://7xpapo.com1.z0.glb.clouddn.com/blog/assets/js/
+
+# Image files root path
+image: /assets/image/
+# image: http://7xpapo.com1.z0.glb.clouddn.com/blog/assets/image/
+
+# disqus settings
+disqus:
+  shortname: kelvinbytes
+plugins:
+  - jekyll-feed
+
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+# exclude:
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
