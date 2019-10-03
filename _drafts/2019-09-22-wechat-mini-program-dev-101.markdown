@@ -80,6 +80,7 @@ JS Lesson learnt
     * I should have used request-promise
     * I used the 'got' npm at the end. It works good.
 https://blog.csdn.net/qq_36935391/article/details/89391488
+    * module.exports has to be at the bottom of the file
 
 Navigation
         wx.navigateTo({
