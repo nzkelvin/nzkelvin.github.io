@@ -8,22 +8,54 @@ tags: WeChat Marketing Weekly
 ---
 
 # Thoughts 
+When I left New Zealand to work in China, I joked about the crazy [996](https://en.wikipedia.org/wiki/996_working_hour_system) working schedule in China. Last week (7/Oct/2019 to 12/Oct/2019), I just had my first 996 week. It was tiring but also satisfying to see how much is achieved over just a week. I quickly realised that I have adjust my life and doing thing ever more efficient so that I can still maintain a 'normal-ish' life so I don't get burnt.
 
-# Cover Story: Learning Chinese Again
+
+# Cover Story: Call centre integration
+## Overall
+Telephony system is not enough
+The third wave of 
+
+System Aggregation Layer
+
+Information Aggregation Layer
+
+USD is made for call centre
+
+## USD vs UCI
+https://docs.microsoft.com/en-us/dynamics365/unified-service-desk/integrate-channel-provider-channel-integration-framework?view=dynamics-usd-4.1
+
+## The Omni-channel Engagement Hub
+An official document
+https://docs.microsoft.com/en-us/dynamics365/omnichannel/videos
+
+A good summary
+https://neilparkhurst.com/2019/05/17/introducing-the-omni-channel-engagement-hub/
+
+## Product: ExpertFlow
+https://docs.google.com/document/d/10fPnWZvHusQ2hUH4b-l4Zri_gKVU3jlTKqF9FTDOkj8/edit?ts=59dcba2f#heading=h.xx3b3crbfvdc
+
+## Product - CTI: Tenfold
+CTI VS backend
+https://www.tenfold.com/product
+
+# China
+## Learning Chinese Again
 reverse culture shock
 
 Generation terminology
 Gen X, Gen Y, Millienial 
 
-# China
-## GDPR
-
 # News
 Alibaba and SalesForce 
 
-# Tools
+# Tools & Tips
+A fast and friendly git client - https://fork.dev/
 
-
+How to achieve mask effect in PowerPoint: 
+Top Menu > 'Format' tab > 'Insert Shapes' section > Merge Shapes > Subtract
+A example:
+![image](https://www.ellenfinkelstein.com/pptblog/wp-content/uploads/2015/09/powerpoint-tips-lightbox-mask-effect-1.png)
 
 
 

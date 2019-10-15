@@ -33,7 +33,7 @@ url: "http://blog.kelvinbytes.com" # the base hostname & protocol for your site,
 #markdown: kramdown
 kramdown:
   input: GFM
-  syntax_highlighter: rouge
+  highlighter: rouge
 
 #relative_permalinks: true
 #permalink format

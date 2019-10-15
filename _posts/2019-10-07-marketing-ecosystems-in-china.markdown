@@ -57,6 +57,9 @@ Once decide on a resturant, Joe will use DianPing again for recommendations on d
 
 Unfortunately, DianPing's customer journey often ends here. Once Joe sit down at a dining table he will close DianPing and order his dishes in person or via a WeChat mini program. 
 
+## Related Articles
+[China Microsoft Dynamics 365 Partner Opportunity from Mark Smith](https://www.nz365guy.com/china-microsoft-dynamics-365-partner-opportunity/)
+
 # China
 
 ## National Day Parade and Missiles Naming Convension
@@ -93,8 +96,8 @@ Microsoft just announced a slew of new devices. My first reaction was in a to se
 | Product                 | Catefory               | CPU          | OS        | Price              |                                                             |
 |-------------------------|------------------------|--------------|-----------|--------------------|-------------------------------------------------------------|
 | Surface Duo             | Phone (folding)        | ARM Qualcom? |  Android  |                    |                                                             |
-| Surface Neo             | Phablet? (dual screen) | ARM Qualcom? | Android   |                    |                                                             |
-| Surface Pro 7           | Tablet                 | Intel        | Windows   | From $750 to $2200 | The device to go for if you want to run Win32 applications. |
+| Surface Neo             | Phablet? (dual screen) | ARM Qualcom? | Windows X   |                    |                                                             |
+| Surface Pro 7           | Tablet                 | Intel / AMD   | Windows   | From $750 to $2200 | The device to go for if you want to run Win32 applications. |
 | Surface Pro X           | Tablet                 | ARM Qualcom  | Windows   |                    | Comparative to iPad Pro.                                    |
 | Surface Go (no change)  | Laptop                 |              | Windows   |                    |                                                             |
 | Surface Book 3          | Laptop                 |              | Windows   |                    |                                                             |
