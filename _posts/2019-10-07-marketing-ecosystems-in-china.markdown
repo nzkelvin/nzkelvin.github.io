@@ -1,10 +1,10 @@
 ---
 layout: post
 comments: true
-title:  "Kelvin Bytes Weekly: Marketing Eco-systems in China"
+title:  "Kelvin Bytes News Letter: Marketing Eco-systems in China"
 date:   2019-10-07 08:00:00 +0800
 categories: Technology
-tags: [WeChat, Marketing, Weekly, China, Microsoft, CRM, Dynamics, PowerPlatform, Twitter, Facebook, LindedIn]
+tags: [WeChat, Marketing, News Letter, Weekly, China, Microsoft, CRM, Dynamics, PowerPlatform, Twitter, Facebook, LindedIn]
 sharing:
     twitter: "Kelvin Bytes Weekly: Marketing Eco-systems in China"
     facebook: "Kelvin Bytes Weekly: Marketing Eco-systems in China"
