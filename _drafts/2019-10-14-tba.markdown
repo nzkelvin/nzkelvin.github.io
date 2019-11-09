@@ -51,12 +51,13 @@ Platform monitoring - https://www.marksgroup.net/blog/dynamics-365-service-healt
 
 Power Platform monitoring - https://www.encorebusiness.com/blog/monitor-dynamics-365-online-performance-power-platform-center/
 
+## Tools
+Common Data Model Navigator - https://microsoft.github.io/CDM/
+
 # China
 ## Learning Chinese Again
 reverse culture shock
 
-Generation terminology
-Gen X, Gen Y, Millienial 
 
 # News
 Alibaba and SalesForce 

@@ -6,6 +6,7 @@ date:   2019-09-22 08:00:00 +0800
 categories: Technology
 tags: WeChat Marketing
 ---
+
 Dev Mode: "Does no verify valid domain names"
 
 Backend: Azure Functions
@@ -19,7 +20,7 @@ Authentication:
         * Custom backend will construct a custom login status code
         * Custom backend URI is whitelist in the Mini App configuration
         * WeChat session code should never expose to the client side.
-
+    
     * You can get a openid without getUserInfo but you will not have the avatar url
 
 Authorisation: 
@@ -99,7 +100,6 @@ JavaScript
         ** await makes async code looks like sync code by adding syntactic sugar
         ** You should use async functions everywhere except all event handlers, e.g. onload.
     * let vs var. let respects code blocks
-
 
 小程序云开发
     * Function setting has timeouts
