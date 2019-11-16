@@ -24,9 +24,9 @@ Authentication:
     * You can get a openid without getUserInfo but you will not have the avatar url
 
 Authorisation: 
-{% highlight javascript %}
+``` javascript
 wx.authorize({scope: "scope.userInfo"})，不会弹出授权窗口，请使用 <button open-type="getUserInfo"/>
-{% endhighlight %}
+```
 
     UserInfo - You need a button > wx.getUserInfo
     UserInfo - encryption? [Decryption][https://blog.csdn.net/ivanyoung66/article/details/72523231]
