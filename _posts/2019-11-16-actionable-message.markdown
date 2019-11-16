@@ -19,7 +19,7 @@ The scenario is that someone will send approval emails to approvers for actions.
 How does it work under the hood. My initial thought is that there must be javascript behind the email. However, it is not possible because most of email systems ban JavaScript due to security risks.
 
 # Actionable Messages in Outlook
-In a nutshell, Actional Messages use JSON to construct the messages declaratively. The below is an example
+In a nutshell, Actional Messages use JSON to construct the messages declaratively. Below is an example
 
 ``` json
 {
@@ -57,6 +57,9 @@ In a nutshell, Actional Messages use JSON to construct the messages declarativel
   ]
 }
 ```
+## Security and Access Control
+Actional Messages also restrict access to the actionable controls if one forward the message to someone else.
+
 # Documentation and tutorial
 ## Documentation
 [Documentation Link](https://docs.microsoft.com/en-us/outlook/actionable-messages/send-via-email)
