@@ -70,9 +70,9 @@ The 'Dynamics 365 for Operations' app has remote debugging capability. You can h
 Unfortunately, the 'Dynamics 365 for phones' app doesn't have the special verion. Please let me know if you have a way to remote debug the Android app directly. Thanks in advance!
 
 ## Other Cool Frontend UX functionalities the D365 Native App supports
-captureAudio
-captureImage	
-captureVideo
-getBarcodeValue - I don't know if it can also scan QR codes. I will report back.
-getCurrentPosition
-pickFile	
+* captureAudio
+* captureImage	
+* captureVideo
+* getBarcodeValue - I don't know if it can also scan QR codes. I will report back.
+* getCurrentPosition
+* pickFile	
