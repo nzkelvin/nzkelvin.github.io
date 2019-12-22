@@ -30,7 +30,7 @@ An Ansible server is Linux based, i.e. you need a Linux server / box to install 
 
 However, the target nodes can run on either Linux or Windows OS.
 
-Microsoft PowerShell Desired State of Configuration (DSC) supports both the "push" and the "pull" methods. However, Ansible only does "push", which means it less flexible but leave no trace post deployments on the target nodes.
+Microsoft PowerShell Desired State of Configuration (DSC) supports both the "push" and the "pull" methods. However, Ansible only does "push", which means it less flexible but leave no trace on the target nodes post deployments .
 
 ## Scripts
 "Infrastructure as Code" is the goal. Microsoft PowerShell Desired State of Configuration is powered by PowerShell scripts. In comparison, Ansible has a concept called Playbooks and they are saved in
@@ -41,6 +41,9 @@ No all applications / systems are made for DevOps. For example, systems like SAP
 
 Some companies only do DevOps internally, and external product release cadance is still around once a year.
 
+## Limitation of 
+Ansible is incapable of deploying to client nodes, e.g. mobile device. It is because you cannot guarantee they are always on.
+
 # Dependents Management
 [JFrog Artifactory](https://jfrog.com/artifactory/) is a popular tool for storing packages, installation files and scripts. 
 
@@ -49,3 +52,15 @@ In an ideal world, DevOps should have its own dedicated team. However, in realit
 
 # Cloud Integration
 The major cloud vendors, like Azure and AWS, all support Ansible natively.
+
+# Bonus: A Checklist for Planning Your DevOps Capability
+* Requirements management system, e.g. Jira.
+* Technology stack and tool chains.
+* IT system environments. Use VMs? Use Containers?
+* IT system monitoring tools, e.g. Zabbix, Splunk, and APM
+* CI: Source code version control tools, check-in policy.
+* CI: Code quality control, e.g. unit test, integration test, UI tests and static code analysis (SonarQube).
+* CI: Build tools.
+* CD: Dependency management, e.g. JFrog Artifactory.
+* CD: Security certification renewal.
+* CD tool chain.
