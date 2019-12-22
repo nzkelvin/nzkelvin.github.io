@@ -85,6 +85,21 @@ In order to test the OCR endpoints quickly, I decided to make web API calls dire
 
 If you want to make a XMLHttpRequest call from Dynamics 365 frontend via JavaScript. The Windows 10 native app will quite happily call an HTTP URL. However, the Android native app will accept nothing less than an HTTPS URL and it will fail SILENTLY on an HTTP URL!!!
 
+### Using Android Emulator
+Microsoft support responsed with this debugging option and stated it is not tested. Microsoft did NOT give me a step-by-step guide.
+
+I know I can use the Andriod emulator to debug a Xamarin app, but in my scenario I was trying to debug JS code inside the ‘D365 for phones’ app (without Microsoft's source code). I don’t understand how this debug option will work.
+
+Anyway, if you are interested, please refer to the following Microsoft documentation.
+
+* [Android Emulator Setup](https://docs.microsoft.com/en-nz/xamarin/android/get-started/installation/android-emulator/)
+* [Debugging on the Android Emulator](https://docs.microsoft.com/en-nz/xamarin/android/deploy-test/debugging/debug-on-emulator?tabs=windows)
+
+
+#### Visual Studio Emulator for Andriod (Do NOT use)
+`Visual Studio Emulator for Android is not supported after Visual Studio 2015`
+
+
 ### Remote Debug the Dynamics 365 Native App or Trying
 The 'Dynamics 365 for Operations' app has remote debugging capability. You can have [the remote debugging super power](https://www.linkedin.com/pulse/dynamics-365-unified-operations-mobile-app-debugging-yadav/) by downloading and installing a special version of the app. You cannot do so from standard app Stores. Downloading Apk files are the way to go. 
 
