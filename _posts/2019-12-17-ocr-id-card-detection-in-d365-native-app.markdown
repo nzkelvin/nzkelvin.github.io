@@ -101,7 +101,7 @@ Anyway, if you are interested, please refer to the following Microsoft documenta
 
 
 ### Remote Debug the Dynamics 365 Native App or Trying
-The 'Dynamics 365 for Operations' app has remote debugging capability. You can have [the remote debugging super power](https://www.linkedin.com/pulse/dynamics-365-unified-operations-mobile-app-debugging-yadav/) by downloading and installing a special version of the app. You cannot do so from standard app Stores. Downloading Apk files are the way to go. 
+The 'Dynamics 365 for Operations' app has remote debugging capability. You can have [the remote debugging super power](https://www.linkedin.com/pulse/dynamics-365-unified-operations-mobile-app-debugging-yadav/) by downloading and installing a special version of the app. You cannot do so from standard app Stores. [Downloading the Apk file](https://github.com/Microsoft/Dynamics365-for-Operations-mobile-FleetManagementSamples/raw/master/android-debug.apk) is the way to go. More details are documented on [the "Mobile platform resources" docs.microsoft.com page](https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/mobile-apps/platform/mobile-platform-home-page?toc=dynamics365%2Funified-operations%2Ffin-and-ops%2Ftoc.json).
 
 Unfortunately, the 'Dynamics 365 for phones' app doesn't have the special version. Please let me know if you have a way to remote debug the Android app directly. Thanks in advance!
 
