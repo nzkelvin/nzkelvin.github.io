@@ -1,8 +1,8 @@
 ---
 layout: post
 comments: true
-title:  "Common Audit Scenarios"
-date:   2020-01-26 08:00:00 +0800
+title:  "Dynamics 365 Server Sizing"
+date:   2020-02-13 08:00:00 +0800
 categories: Technology
 tags: [Dynamics, Audit Log, Twitter, Facebook, LinkedIn]
 sharing:
@@ -14,8 +14,11 @@ sharing:
 Project contract is signed
 First thing, Hardware provision
 
-# Goal
+# Goal / Metrices
+## Server Response Time
 Sub-second
+
+## Page Load Time
 3 seconds
 
 # Baseline
