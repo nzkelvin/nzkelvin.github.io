@@ -23,18 +23,18 @@ Rent - Main form
 Rent Details are listed in an subgrid of the main form.
 
 ## UI requirements
-* The subgrid should be editable
+* The subgrid should be editable.
 * Every rent detail line has an "end date" field. Upon updating the field, the solution need to rejig the following rent detail lines.
-* The 'rejig' needs to happen on the "end date" field change, not when a user hit the subgrid save button
+* The 'rejig' needs to happen on the "end date" field change, not when a user hit the subgrid save button.
 
 ## Design Considerations
 * The heavy lifting is done @ the backend by an Action.
 * Once done, the entire subgrid to refresh.
 
 # Attempt One: Didn't Work
-* On Field change, trigger save on the sub-grid line form context. (Maybe I should try, subgrid.selectedRow.Save)
-* Call the Action
-* On Action successful completion, refresh the subgrid
+* On Field change, trigger save on the form context of a sub-grid line record.
+* Call the Action.
+* On Action successful completion, refresh the subgrid.
 
 
 ``` csharp
@@ -153,7 +153,7 @@ glp.rent.subgrid = glp.rent.subgrid || {};
 ).call(glp.rent.subgrid);
 ```
 
-# Attempt Three: Worked (Limited by D365 Client API)
+# Attempt Three: Worked but Limited by D365 Client API
 I managed to trigger the 'rejig' action as soon as I select a different rental detail line/row, i.e. no need to click on the subgrid save button. 
 
 [Other conditions](https://docs.microsoft.com/en-us/powerapps/developer/model-driven-apps/clientapi/reference/events/grid-onsave) can cause the subgrid to save.
