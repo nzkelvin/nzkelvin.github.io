@@ -2,7 +2,7 @@
 layout: post
 comments: true
 title:  "Dynamics 365 IE 11 supportability"
-date:   2020-02-01 08:00:00 +0800
+date:   2020-02-16 08:00:00 +0800
 categories: Technology
 tags: [Dynamics, Data, Twitter, Facebook, LinkedIn]
 sharing:
