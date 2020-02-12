@@ -234,6 +234,10 @@ Use multiple sub-grid with different columns are less ideal because I have field
 # Lesson Learnt
 When writing async code, you need to understand what is async and what the sync and execution order.
 
+The grid context doesn't aware of its parent form context. So if you want a grid control to refresh by click outside of the grid control, you need to refresh its parent form.
+
+GridAttribute is like Attribute but for editable grid. You will get one from EditableGrid.OnRecordSelect(execContext) > execContext.getFormContext().getAttribute("attributeName")
+
 Grid.OnRecordSelect event is a very useful event.
 
 D365 Client API still feels a bit backend heavy and event binding is less sophisticated compare to ReactJS and Vue.js.
