@@ -25,7 +25,8 @@ On the other hand, IE11 is a different beast. It doesn't support many new JS syn
 ``` javascript
 aPromiseObject.then((input) => output);
 ``` 
+If IE11 cannot find a form onload handler, changes are you have syntax incompatible with IE11 in your code base.
 
-You also need to find polyfills for IE11 if they are available. 
+You also need to find (polyfills)[https://dev.to/thekashey/ie11-and-the-missing-polyfills-1cd9] for IE11 if they are available. 
 
 You will need to take into account extra test efforts too. Not only because of extra test runs for the browser, IE11 load page a LOT slow than Chrome, FF and Edge. 
