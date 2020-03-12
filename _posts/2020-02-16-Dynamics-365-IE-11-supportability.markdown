@@ -10,7 +10,9 @@ sharing:
     facebook: "Dynamics 365 IE 11 supportability"
     linkedin: "Dynamics 365 IE 11 supportability"
 ---
-Hate is a strong word but sometimes I felt it describe my feeling 
+At the end of building a solution, everything was working. Then someone mentioned IE11, I felt a visceral punch.
+
+Regardless many companies are still using IE11 due to various reasions, like supporting for legacy industry specific applications.
 
 # Supported but not recommended
 The official [Dynamics 365 documentation](https://techcommunity.microsoft.com/t5/windows-it-pro-blog/the-perils-of-using-internet-explorer-as-your-default-browser/ba-p/331732) says IE 11 browser is supported but you also need to check requirements for individual apps. Unfortunately, not every app documentation specifies supported browsers and their versions. In that case, I guess we have to refer back to the documentation above.
