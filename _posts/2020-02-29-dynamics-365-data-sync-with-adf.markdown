@@ -66,8 +66,3 @@ ADF 'Copy Data' Activity will automatically generate source data schema based on
 
 # Azure Data Factory v2 + SSIS
 With ADF v2 Integration Runtime (IR), your existing SSIS package investment should continue to work. If you are familiar with KingswaySoft, they also have a version which support ADF v2 IR.  
-
-
-
-
-
