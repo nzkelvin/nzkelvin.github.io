@@ -19,15 +19,20 @@ There are hundred ways to (hypothesically) skin a cat. Below is a list of implem
 * Event Driven with Azure Service Bus
 * ETL with standard ADF
 * ETL with ADF v2 and SQL Server Integration Service (SSIS) packages
-* Data Export Service - I think this one is falling out favour as recommended by Microsoft
-* [CDS Data Integrator](https://docs.microsoft.com/en-nz/power-platform/admin/data-integrator)
+* Data Export Service - I think this one is falling out favour and not longer recommended by Microsoft
+* [CDS Data Integrator (Power Platform Admin Portal > Data integration)](https://docs.microsoft.com/en-nz/power-platform/admin/data-integrator) (the focus is on moving data between Dyanmics family products. Be careful about its limitations!)
+* [Power Platform dataflows (Power Platform Maker Portal > Data > dataflow)](https://docs.microsoft.com/en-us/power-platform-release-plan/2019wave2/cdm-data-integration/power-platform-dataflows) (emphasis on integrating external data sources into CDS)
+* [Power Platform Maker Portal > Data > Export to Data Lake)](https://docs.microsoft.com/en-us/power-platform-release-plan/2019wave2/cdm-data-integration/author-dataflows-maker-portal) (focus on data flow from CDS to Data Lake for analytics)
 
 # Key Considerations
-* There are quite a few PowerPlatform features and services don't work in the China tenants.
-* Data integration vs Data Migration (data volume)
-* Data integration vs Data synchronization (data tranformation complexity)
-* On premise or in cloud or a mixture
+* There are quite a few [Power Platform features not available in the China tenants](https://docs.microsoft.com/en-nz/power-platform/admin/about-microsoft-cloud-china#features-not-available).
+* Advanced quering 
+* Supported data types
+* Data integration vs data migration (data volume)
+* Data integration vs data synchronization (data tranformation complexity)
+* Are data source and distination on-premise or in cloud or a mixture
 * Data sources and if they have supported data connectors
+* Multi-tenant support
 
 # Azure Data Factory (Standard)
 I am glad to report that this actually works but with some significant limitations.
