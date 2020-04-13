@@ -13,6 +13,7 @@ sharing:
 In a nutshell, the goal is to get a security token from Azure AD via OAuth 2.0 protocal. 
 
 There are many OAuth 2.0 and OpenID Connect flows, the flow I am focusing on is called ("OAuth 2.0 authorization code flow")[https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow#protocol-diagram]. A typical user case is to allow a web/native app to authenticate on its own, i.e. without popup an SSO dialog to a user, so it can communicate with target Web APIs in background jobs.
+![image](https://docs.microsoft.com/en-us/azure/active-directory/develop/media/v2-oauth2-auth-code-flow/convergence-scenarios-native.svg)
 
 # A Step-by-step Guide
 ## Azure Application Registration
