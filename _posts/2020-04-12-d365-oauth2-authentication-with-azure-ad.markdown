@@ -10,7 +10,9 @@ sharing:
     facebook: "Dynamics 365 OAuth 2.9 Authentication with Azure AD"
     linkedin: "Dynamics 365 OAuth 2.0 Authentication with Azure AD"
 ---
-In a nutshell, the goal is to get a security token from Azure AD via OAuth 2.0 protocal.
+In a nutshell, the goal is to get a security token from Azure AD via OAuth 2.0 protocal. 
+
+There are many OAuth 2.0 and OpenID Connect flows, the flow I am focusing on is called ("OAuth 2.0 authorization code flow")[https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow#protocol-diagram]. A typical user case is to allow a web/native app to authenticate on its own, i.e. without popup an SSO dialog to a user, so it can communicate with target Web APIs in background jobs.
 
 # A Step-by-step Guide
 ## Azure Application Registration
@@ -141,13 +143,13 @@ namespace Kys.D365.WebApi.ConsoleClient
 ```
 
 ## Coding with MSAL.NET
-ADAL was superceded by MSAL.NET. I will circle back with code sample in another post :-).
+ADAL was superceded by MSAL.NET. I will circle back after I get a chance to try [some MSAL code samples](https://docs.microsoft.com/en-us/azure/active-directory/develop/sample-v2-code). 
 
 ## Coding with RESTSharp
 https://stackoverflow.com/questions/30133937/how-to-use-oauth2-in-restsharp
 
 ## Coding without Using Any Library
-It's on my to do list please watch the space :-)
+https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/authenticate-oauth#use-the-accesstoken-with-your-requests
 
 # CDS Client Library
 The "XrmServices/2011" SOAP service endpoints (Organization Service) are on its way out. People have been asking for the replacement for XrmTooling.CoreAssembly (Microsoft.CrmSdk.XrmTooling.CoreAssembly Nuguet package) for many years.
@@ -160,6 +162,10 @@ So the [CDS Client (Microsoft.Powerplatform.Cds.Client)](https://www.nuget.org/p
 ## Azure China
 I will compare Azure China to Azure Global on the OAuth topic in another post.
 https://docs.microsoft.com/en-us/azure/china/resources-developer-guide#check-endpoints-in-azure
+
+# Future Related Blog Posts
+* Impersonation after OAuth Authorization
+* Multi-tenant Authorization
 
 ## Reference
 * [A great blog post](https://www.cnblogs.com/luoyong0201/p/Dynamics_365_OAuth2_Client_Credentials_Server_to_Server_Authentication_web_api.html) from Luo Yong (Microsoft). The post is written in Chinese with a lot of screenshots and 2 code samples.
