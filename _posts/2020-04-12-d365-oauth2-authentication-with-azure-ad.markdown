@@ -171,6 +171,7 @@ https://docs.microsoft.com/en-us/azure/china/resources-developer-guide#check-end
 ## Reference
 * [A great blog post](https://www.cnblogs.com/luoyong0201/p/Dynamics_365_OAuth2_Client_Credentials_Server_to_Server_Authentication_web_api.html) from Luo Yong (Microsoft). The post is written in Chinese with a lot of screenshots and 2 code samples.
 * [An old post from John Towgood](https://www.magnetismsolutions.com/blog/johntowgood/2018/03/08/dynamics-365-online-authenticate-with-client-credentials)
+* [OAuth 2.0 and OpenID Connect (in plain English)](https://youtu.be/996OiexHze0)
 * [Quickstart: Configure a client application to access web APIs](https://docs.microsoft.com/en-nz/azure/active-directory/develop/quickstart-configure-app-access-web-apis)
 * [Register an app with Azure Active Directory](https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/walkthrough-register-app-azure-active-directory)
 * [Obtain OrganizationService using Application User in Dynamics 365](https://www.inogic.com/blog/2018/10/obtain-organizationservice-using-application-user-in-dynamics-365/)
