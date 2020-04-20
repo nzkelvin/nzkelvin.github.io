@@ -81,7 +81,8 @@ Resource Server - Your application server
 | Claims Provider | Identity Provider (IdP) | The partner in a federation that creates security tokens for users |
 | Relying Party | Service Provider (SP) | The partner in a federation that consumes security tokens for providing access to applications |
 | Claims | Assertion attributes | Data about users that is sent inside security tokens |
-source: https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/gg466930(v=ws.10)
+
+Source: https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/gg466930(v=ws.10)
 
 IdP = Identity Provider (SSO backend)
 SP = Service Provider. SP trusts and relies on IdP.
