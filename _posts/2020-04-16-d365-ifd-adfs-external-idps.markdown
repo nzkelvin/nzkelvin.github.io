@@ -84,11 +84,11 @@ Resource Server - Your application server
 
 Source: https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/gg466930(v=ws.10)
 
-STS = Security Token Service (A cross-platform SSO framework standard)
-SAML = Security Assertion Markup Language 
-JWT = Json Web Token (Encrypted)
-OAuth is a authorization Protocal
-Claim-based identity is a high level term for describing a way to decouple your application code 
+* STS = Security Token Service (A cross-platform SSO framework standard)
+* SAML = Security Assertion Markup Language 
+* JWT = Json Web Token (Encrypted)
+* OAuth is a authorization Protocal
+* Claim-based identity is a high level term for describing a way to decouple your application code 
 
 # References
 * [WS-Fed vs. SAML vs. OAuth vs. OpenID Connect](https://nirajrules.wordpress.com/2016/03/05/ws-fed-vs-saml-vs-oauth-vs-openid-connect/)
