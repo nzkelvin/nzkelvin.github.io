@@ -84,8 +84,6 @@ Resource Server - Your application server
 
 Source: https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/gg466930(v=ws.10)
 
-IdP = Identity Provider (SSO backend)
-SP = Service Provider. SP trusts and relies on IdP.
 STS = Security Token Service (A cross-platform SSO framework standard)
 SAML = Security Assertion Markup Language 
 JWT = Json Web Token (Encrypted)
