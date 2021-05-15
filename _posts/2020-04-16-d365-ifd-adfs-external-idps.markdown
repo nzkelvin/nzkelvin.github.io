@@ -23,7 +23,7 @@ OAuth + OpenID Connect: OpenID Connect adds authorization to OAuth. Azure AD sup
 
 Above three are alternative sign-in protocals? The key here is WS-Fed protocal because that is the one Dynamics 365 uses.
 
-## Note to My Futuer Self
+## Note to My Future Self
 Before drowning myself in pot of protocals, ask [the following questions](https://techcommunity.microsoft.com/t5/Core-Infrastructure-and-Security/ADFS-Deep-Dive-Comparing-WS-Fed-SAML-and-OAuth/ba-p/257584):
 * What is Sign-in protocal?
 * What is the Token Type?
