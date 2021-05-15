@@ -39,5 +39,5 @@ Watch the space, please! I will fill this knowledge gap.
 | Code Repository | CI | Azure DevOps | Giblab Repository |
 | Code Scan | CI | SonarQube | SonarQube |
 | Pipleline | CI | Azure DevOps Pipelines | Jenkins Pipelines |
-| Package Management | CI & CD | Azure DevOps Artefacts | Nexus |
+| Package Management | CI | Azure DevOps Artefacts | Nexus |
 | Deployment Pipeline | CD | Azure DevOps Pipeline | Ansible Deployment Pipeline |
