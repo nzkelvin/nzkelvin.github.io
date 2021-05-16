@@ -33,6 +33,7 @@ Sparkl
 Watch the space, please! I will fill this knowledge gap.
 
 # Platforms Comparison
+
 | Purpose | Category | Microsoft | Non-Microsoft |
 | ---------------- | ---------------- | ---------------- | ----------------- |
 | DevOps Framework | CI | Azure DevOps | Ansible |
@@ -41,3 +42,5 @@ Watch the space, please! I will fill this knowledge gap.
 | Pipleline | CI | Azure DevOps Pipelines | Jenkins Pipelines |
 | Package Management | CI | Azure DevOps Artefacts | Nexus |
 | Deployment Pipeline | CD | Azure DevOps Pipeline | Ansible Deployment Pipeline |
+
+
