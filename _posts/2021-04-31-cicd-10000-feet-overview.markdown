@@ -43,4 +43,3 @@ Watch the space, please! I will fill this knowledge gap.
 | Package Management | CI | Azure DevOps Artefacts | Nexus |
 | Deployment Pipeline | CD | Azure DevOps Pipeline | Ansible Deployment Pipeline |
 
-
