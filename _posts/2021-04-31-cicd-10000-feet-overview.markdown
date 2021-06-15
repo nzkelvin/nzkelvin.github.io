@@ -2,7 +2,7 @@
 layout: post
 comments: true
 title:  "CI/CD 10,000-Feet Overview"
-date:   2020-04-31 08:00:00 +0800
+date:   2021-04-31 08:00:00 +0800
 categories: Technology
 tags: [DevOps, CI, CD, Azure DevOps]
 sharing:
