@@ -38,12 +38,23 @@ type .git/HEAD
 ```
 
 # Scenarios
-## Scenario:  Get the latest code from an existing remote branch
+## Get the latest code from an existing remote branch
 The fetch command is for getting the latest of repo's branch structure. For example, if your colleagues have commited and pushed new branches.
 ``` powershell
 git fetch
 git switch "target-branch"
 git pull
+```
+
+Even better, you can do the following.
+``` powershell
+git pull origin source-branch-name
+git pull origin master #for example, do this on the target branch
+```
+
+However, I got burnt with the following command. Because it didn't prompt for conflicts, and left a lot of rubbish in my code base. 
+``` powershell
+git merge origin source-branch-name
 ```
 
 ## Create new branch
@@ -67,7 +78,7 @@ git clean -df #remove untracked directories and files.
 git checkout -- .
 ```
 
-## Undo commited changes with reset
+## Reset - Undo commited changes with reset
 The following command set is for undo the latest commit and it will also keep the change at your local repo unstaged.
 ``` powershell
 git add .
@@ -168,6 +179,22 @@ git push -u origin
 ``` powershell
 git push
 ```
+
+## remote prune
+### Scenario: remove the local branches that are not on the remote any more.
+``` powershell
+git branch -vv #Check local remote branches mapping
+git branch -r #List all remote branches
+git remote prune origin
+```
+
+### Scenario: delete all local branches that are already merged into master
+``` powershell
+git branch --merged main | grep -v '^[ *]*main$' | xargs git branch -d
+```
+
+## Reference(s)
+https://stackoverflow.com/questions/13064613/how-to-prune-local-tracking-branches-that-do-not-exist-on-remote-anymore
 
 # Tools 
 ## Fork
