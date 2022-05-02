@@ -4,7 +4,7 @@ comments: true
 title:  "Actionable Message in Outlook"
 date:   2019-11-16 08:00:00 +0800
 categories: Technology
-tags: [Outlook, Email, Office365, Microsoft, Dynamics, PowerPlatform, Twitter, Facebook, LinkedIn]
+tags: [Microsoft, Dynamics, Integration, Azure, Twitter, Facebook, LinkedIn]
 sharing:
     twitter: "Actionable Message in Outlook"
     facebook: "Actionable Message in Outlook"
