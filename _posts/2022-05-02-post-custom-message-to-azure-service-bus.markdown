@@ -17,7 +17,7 @@ Service endpoints allow you to send Dynamics 365 plugin execution context to [Az
 Suppose you are not happy with the OOTB behaviour of Service Endpoints. In that case, you can [register Azure-aware plugin steps](https://docs.microsoft.com/en-us/dynamics365/customerengagement/on-premises/developer/walkthrough-register-azure-aware-plug-in-using-plug-in-registration-tool?view=op-9-1) to manipulate the current execution context before sending it down the wire.
 
 ## Limitation: Message Size Overhead and Rigid Schema
-Service endpoints send over the entire execution context (with manipulation or not). So, the messages have a lot of overhead you may not need. For example, suppose you only want to send a message to inform about a record status change. In that case, the PluginExecutionContext object will come with information about the current user, context depth, all the changed fields, etc.
+Service endpoints send out an serialised (RemoteExecutionContext)[https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.remoteexecutioncontext?view=dataverse-sdk-latest&viewFallbackFrom=dynamics-general-ce-9] object (with manipulation or not). So, the messages have a lot of overhead the receiver may not need. For example, suppose you only want to send a message to inform about a record status change. In that case, the PluginExecutionContext object will come with information about the current user, context depth, all the changed fields, etc.
 
 In a perfect world, I should be able to dictate the exact JSON message schema my plugin will produce. But unfortunately, I don't have a say on the output message schema. It is because service endpoints can only serialize PluginExecutionContext objects.
 
@@ -91,3 +91,6 @@ public HttpResponseMessage Post(string requestUri, string content, string sessio
     return null;
 }
 ```
+
+## References
+* [Write a custom Azure-aware plug-in](https://docs.microsoft.com/en-us/dynamics365/customerengagement/on-premises/developer/write-custom-azure-aware-plugin?view=op-9-1)
