@@ -1,14 +1,14 @@
 ---
 layout: post
 comments: true
-title:  "Dynamics File Column Scenario: Folder File Tree Structure"
+title:  "Dynamics 365 CE File Column Scenario: Folder File Tree Structure"
 date:   2022-10-01 08:00:00 +0800
 categories: Technology
 tags: [Microsoft, Dynamics, Power Portal, Azure, Azure China, Twitter, Facebook, LinkedIn]
 sharing:
-    twitter: "Dynamics File Column Scenario: Folder File Tree Structure"
-    facebook: "Dynamics File Column Scenario: Folder File Tree Structure"
-    linkedin: "Dynamics File Column Scenario: Folder File Tree Structure"
+    twitter: "Dynamics 365 CE File Column Scenario: Folder File Tree Structure"
+    facebook: "Dynamics 365 CE File Column Scenario: Folder File Tree Structure"
+    linkedin: "Dynamics 365 CE File Column Scenario: Folder File Tree Structure"
 ---
 
 ## Scenario
