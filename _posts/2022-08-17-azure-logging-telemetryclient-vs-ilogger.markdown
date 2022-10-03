@@ -64,4 +64,4 @@ public static class LoggerExtensions
 ILogger using ToString() method so complex type will be logged as its fully qualified name ONLY. The workaround is to ToJson() method for serialization before feeding it to ILogger.
 
 ## References
-(Fixing Logging Issues In ASP.NET: TelemetryClient Vs. ILogger)[https://hackernoon.com/fixing-logging-issues-in-aspnet-telemetryclient-vs-ilogger-sev339a]
+[Fixing Logging Issues In ASP.NET: TelemetryClient Vs. ILogger](https://hackernoon.com/fixing-logging-issues-in-aspnet-telemetryclient-vs-ilogger-sev339a)
