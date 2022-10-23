@@ -21,10 +21,13 @@ Documents exchange between the company and its client is allowed.
 ### Requirement 2 - Structure
 There are many type of documents, and each type of document has its own folder. For example, there are two types of documents: contract and shipping document. The contract documents are under the "Contracts" folder, and the shipping documents is under the "Shipping Documents" folder.
 
-### Requirement 3 - Access Control
+### Requirement 3 - Security Control
 The company's clients can be competitiors, so they are not allowed to access each others documents. The client's representitives can only access their own documents.
 
 Sometimes, especially for small companies, they may share one representitive. In other words, the representitive may represent multiple clients. In this case, the representitive can access the documents of a selection of clients. 
+
+### Requirement 3 - Access Level Control
+Some folders will only allow read-only access to the client's representitives, e.g. no upload is required.
 
 ## Design
 ### Data Model > Overall
@@ -72,3 +75,8 @@ So, the Folder column is the best choice in my opinion. Plus, it also stores the
 
 ### Limitations > File Size
 If a file is more than 16 MB, you need to do a little extra work to deal with [chuncking](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/file-attributes?tabs=webapi#example-upload-with-chunking).
+
+## References
+[msdoc - File columns](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/file-attributes?tabs=webapi#example-upload-with-chunking)
+
+[msdoc - Image columns](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/image-attributes)
