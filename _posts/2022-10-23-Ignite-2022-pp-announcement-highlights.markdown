@@ -1,14 +1,14 @@
 ---
 layout: post
 comments: true
-title:  "aaa templates"
-date:   2019-01-01 08:00:00 +0800
+title:  "Ignite 2022 Power Platform Announcement Highlights"
+date:   2022-10-23 08:00:00 +0800
 categories: Technology
-tags: [Microsoft, Dynamics, Integration, Azure, Azure China, Twitter, Facebook, LinkedIn]
+tags: [Microsoft, Dynamics, Ignite, Power Platform, Twitter, Facebook, LinkedIn]
 sharing:
-    twitter: ""
-    facebook: ""
-    linkedin: ""
+    twitter: "Ignite 2022 Power Platform Announcement Highlights"
+    facebook: "Ignite 2022 Power Platform Announcement Highlights"
+    linkedin: "Ignite 2022 Power Platform Announcement Highlights"
 ---
 
 ## Power Pages GA
@@ -28,58 +28,14 @@ Another important change is the Power Pages license model. It is no longer charg
 >
 >These changes make it easier for organizations to choose appropriate licensing options for their website.
 
+## Model Driven Apps Real Time Co-authoring 
+This is a very welcoming feature, especially for the multi developers working on the same app scenario. Previously, we have developers lost JavaScript code work due to multiple developers working on the same script and overwrite each others work.
 
+## Managed Environments
+Managed environments in GA offers a set of OOTB governance capabilities, and built-in ALM, pipeline automation, and more. 
 
-## Header 1
-**bold**
-*Italic*
-
-## Link
-[RemoteExecutionContext](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.remoteexecutioncontext?view=dataverse-sdk-latest&viewFallbackFrom=dynamics-general-ce-9)
-
-## Images 
-![image](../images/2020-04-15-azure-storage-emulator-initiation-error/StorageEmulatorInitError.png)
-
-## Blockquote
-> "Lorem Ipsum"
-
-## Code
-``` csharp
-static Guid GetUserId(string resource, string accessToken)
-{
-    using (var client = new HttpClient())
-    {
-        // Use the WhoAmI function
-        var response = client.GetAsync("WhoAmI").Result;
-
-        if (response.IsSuccessStatusCode)
-        {
-            //Get the response content and parse it.  
-            JObject body = JObject
-                .Parse(response.Content.ReadAsStringAsync().Result);
-            Guid userId = (Guid)body["UserId"];
-            return userId;
-        }
-        else
-        {
-            throw new Exception(string.Format(
-                "The WhoAmI request failed with a status of '{0}'",
-                response.ReasonPhrase));
-
-        }
-    }
-}
-```
-
-
-## Table
-There must be an empty line before a table
-
-| ADFS 2.0 name | PingFederate name | Concept |
-| ---------------- | ---------------- | -------------- |
-| Security Token | Assertion | A collection of XML-formatted security information, describing a user, that is created and consumed during a federated access request |
-| Claims Provider | Identity Provider (IdP) | The partner in a federation that creates security tokens for users |
-| Relying Party | Service Provider (SP) | The partner in a federation that consumes security tokens for providing access to applications |
-| Claims | Assertion attributes | Data about users that is sent inside security tokens |
-
-There must be an empty line after a table
+## Cross-tenant dataset sharing
+>Cross-tenant dataset sharing enables users to share datasets with external organizations like business partners, customers, and vendors in an easy, quick, and secure manner. When the dataset is shared with external users, they can access it in their own tenant, build composite models on top of the shared dataset with their own internal data, and build and share reports based on the model. 
+>
+>Users can access all their external datasets in one easy-to-find place in Power BI Desktop. Along with cross-tenant dataset sharing, Power BI is making it easier to discover reports, dashboards, and workspaces shared by external tenants with you as a guest user in their tenant. Users can just go to their home page and find all content shared with them by external organizations in the “External
+data” tab.
