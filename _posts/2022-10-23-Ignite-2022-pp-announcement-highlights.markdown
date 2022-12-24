@@ -39,3 +39,6 @@ Managed environments in GA offers a set of OOTB governance capabilities, and bui
 >
 >Users can access all their external datasets in one easy-to-find place in Power BI Desktop. Along with cross-tenant dataset sharing, Power BI is making it easier to discover reports, dashboards, and workspaces shared by external tenants with you as a guest user in their tenant. Users can just go to their home page and find all content shared with them by external organizations in the “External
 data” tab.
+
+## References
+* https://mp.weixin.qq.com/s/lEzfUD7FhmDH1E8IcqJn6w
