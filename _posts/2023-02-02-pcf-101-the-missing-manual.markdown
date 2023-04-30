@@ -339,4 +339,13 @@ msbuild /t:restore
 msbuild
 ```
 
+### Add reference
+The relative path to the component level folder is accurate.
+```
+pac solution add-reference --path ..\..\
+```
+![image](/images/2023-02-02-pcf-101-the-missing-manual/build-package-relative-path.png)
 
+### Solution name
+The solution name after imported into Power Platform is the same as the solution folder name you created.
+![image](/images/2023-02-02-pcf-101-the-missing-manual/solution-name.png)
