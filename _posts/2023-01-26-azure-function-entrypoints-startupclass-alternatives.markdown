@@ -226,6 +226,80 @@ namespace KelvinBytes.Function
 | Why does builder.Services.AddDependencyInjection() need builder.GetContext().Configuration as a parameter? | The builder.Services.AddDependencyInjection() function is not present in the given code. It is a custom extension method called AddDependencyInjection(IConfiguration configuration). It is full of DI mapping code, like services.AddSingleton and services.AddScoped |
 | What are the main differences between services.AddSingleton and services.AddScoped in the context of Azure Function?  | 1) Singleton services have a single instance shared across the entire application, while scoped services have an instance per function execution. 2) Singleton services are suitable for stateless services or when sharing state across multiple function executions, while scoped services are suitable for maintaining state within a single function execution or sharing state across dependencies within the same function execution.  |
 
+## Co-existance of the Program class and the Startup class 
+The Main function of the Program class and the Startup class can co-exist in an Azure Function project. They serve different purposes and are executed at different stages of the application lifecycle.
+
+The Main function of the Program class is the entry point of the application. It is responsible for setting up the host and configuring the host environment. It is executed first when the Azure Function app starts.
+
+The Startup class, on the other hand, is used to configure the application's services and dependency injection. The Configure method in the Startup class is executed after the host environment is set up and the application is ready to start accepting function executions.
+
+Here is the typical execution order:
+
+1. The Main function in the Program class is executed. It sets up the host, configures the host environment, and builds the configuration.
+1. The Startup class is instantiated, and its Configure method is executed. This is where services are registered, and dependency injection is configured.
+1. The application starts accepting and processing function executions.
+
+In summary, the Main function and the Startup class can co-exist in an Azure Function project. The Main function is executed first to set up the host environment, followed by the execution of the Configure method in the Startup class to configure services and dependency injection.
+
+### Program.cs
+```csharp
+using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using System.IO;
+
+namespace MyAzureFunctionApp
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            var host = new HostBuilder()
+                .ConfigureAppConfiguration((hostContext, builder) =>
+                {
+                    builder.SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                        .AddEnvironmentVariables();
+                })
+                .ConfigureFunctionsWorkerDefaults()
+                .ConfigureServices((hostContext, services) =>
+                {
+                    // Additional service configuration can be done here
+                })
+                .Build();
+
+            host.Run();
+        }
+    }
+}
+
+```
+
+### Startup.cs
+```csharp
+using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
+
+[assembly: FunctionsStartup(typeof(MyAzureFunctionApp.Startup))]
+
+namespace MyAzureFunctionApp
+{
+    public class Startup : FunctionsStartup
+    {
+        public override void Configure(IFunctionsHostBuilder builder)
+        {
+            // Register your services here, e.g.:
+            SetupMaps.ConfigureMaps();
+
+            builder.Services.Configure<ApplicationSettings>(builder.GetContext().Configuration);
+            builder.Services.Configure<ConnectionStrings>(builder.GetContext().Configuration);
+            builder.Services.AddSingleton<IMyService, MyService>();
+        }
+    }
+}
+
+```
+
 ## Sample Code - Dependency Injection Extention Class
 ```csharp
     public static class DependencyInjection
@@ -248,3 +322,15 @@ namespace KelvinBytes.Function
         }
     }
 ```
+
+##  Differences between services.AddSingleton and services.AddScoped
+In the context of Azure Functions, the primary difference between services.AddSingleton and services.AddScoped lies in the **lifetime and scope of the instances** created for registered services.
+
+- services.AddSingleton: When you register a service using services.AddSingleton, a single instance of the service is created and shared across the entire application. This means that each time the service is requested, the same instance will be returned, making it suitable for stateless services that do not depend on the context of the request. In the context of Azure Functions, the single instance will be shared across all function executions.
+
+- services.AddScoped: When you register a service using services.AddScoped, a new instance of the service is created per scope. In the context of Azure Functions, a scope is created for each function execution. Therefore, each time a function is executed, a new instance of the service is created, and the instance is shared within the function execution context. Scoped services are useful when you need to maintain state within the context of a single function execution or when you need to share state across dependencies within the same function execution.
+
+To summarize, the main differences between services.AddSingleton and services.AddScoped in Azure Functions are:
+
+- Singleton services have a single instance **shared across the entire application**, while scoped services have an instance per function execution.
+- Singleton services are suitable for stateless services or when sharing state across multiple function executions, while scoped services are **suitable for maintaining state** within a single function execution or sharing state across dependencies within the same function execution.
