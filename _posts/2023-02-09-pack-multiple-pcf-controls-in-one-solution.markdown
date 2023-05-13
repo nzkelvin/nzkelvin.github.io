@@ -6,9 +6,9 @@ date:   2023-02-02 08:00:00 +0800
 categories: Technology
 tags: [Microsoft, Dynamics, Power Platform, Power Apps, PCF, Twitter, Facebook, LinkedIn]
 sharing:
-    twitter: "PCF 101 - The Missing Manual"
-    facebook: "PCF 101 - The Missing Manual"
-    linkedin: "PCF 101 - The Missing Manual"
+    twitter: "Pack Multiple PCF Controls in a Single Solution"
+    facebook: "Pack Multiple PCF Controls in a Single Solution"
+    linkedin: "Pack Multiple PCF Controls in a Single Solution"
 ---
 
 ## Introduction
