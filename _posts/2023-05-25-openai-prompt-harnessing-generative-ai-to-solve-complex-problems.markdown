@@ -2,7 +2,7 @@
 layout: post
 comments: true
 title:  "OpenAI Series: Prompt - Harnessing Generative AI to Solve Complex Problems"
-date:   2019-01-01 08:00:00 +0800
+date:   2023-05-25 08:00:00 +0800
 categories: Technology
 tags: [AI, OpenAI, AGCI, Azure, Twitter, Facebook, LinkedIn]
 sharing:
