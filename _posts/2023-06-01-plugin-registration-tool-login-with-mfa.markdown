@@ -2,9 +2,9 @@
 layout: post
 comments: true
 title:  "Plugin Registration Tool Login with MFA"
-date:   2023-05-25 08:00:00 +0800
+date:   2023-06-01 08:00:00 +0800
 categories: Technology
-tags: [D365, PowerPlatform, Dataverse, Authentication,, Twitter, Facebook, LinkedIn]
+tags: [D365, PowerPlatform, Dataverse, Authentication, Twitter, Facebook, LinkedIn]
 sharing:
     twitter: "Plugin Registration Tool Login with MFA"
     facebook: "Plugin Registration Tool Login with MFA"
