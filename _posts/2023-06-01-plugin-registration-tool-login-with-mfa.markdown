@@ -10,7 +10,9 @@ sharing:
     facebook: "Plugin Registration Tool Login with MFA"
     linkedin: "Plugin Registration Tool Login with MFA"
 ---
-## Error
+## MFA Login Error
+When you try to create a Plugin Registration Tool connection using a user with MFA enabled, you may get the following error:
+
 ```
 Source	: Not Provided
 Method	: Not Provided
@@ -21,6 +23,13 @@ Stack Trace	: Not Provided
 ======================================================================================================================
 
 ```
+
+## Solution
+All you need to do is to leave the User Name and the Password fields blank, and click Login. You will be prompted to enter your credentials in a pop-up window. After you enter your credentials, you will be prompted to enter the code from your authenticator app. After you enter the code, you will be logged in successfully.
+
+![image](../images/2023-06-01-plugin-registration-tool-login-with-mfa/login-leave-blanks.png) 
+
+![image](../images/2023-06-01-plugin-registration-tool-login-with-mfa/login-pop-up.png) 
 
 ## Reference
 - http://www.bwmodular.org/blog/using-the-plugin-registration-tool-with-mfa-enabled-accounts-in-dynamics-365
