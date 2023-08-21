@@ -83,6 +83,6 @@ Both of these methods allow you to keep using GitHub Copilot with one account an
 ```PowerShell
 git config --get remote.origin.url
 
-git remote set-url origin https://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@github.com/nzkelvin/nzkelvin.github.io.git
+git remote set-url origin https://<TOKEN>@github.com/nzkelvin/nzkelvin.github.io.git
 ```
 
