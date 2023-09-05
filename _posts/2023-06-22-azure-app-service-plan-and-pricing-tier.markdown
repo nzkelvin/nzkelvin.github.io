@@ -4,14 +4,12 @@ comments: true
 title:  "Azure Function Plan and Pricing Tier"
 date:   2023-06-22 08:00:00 +0800
 categories: Technology
-tags: [D365, PowerPlatform, Dataverse, Authentication, Twitter, Facebook, LinkedIn]
+tags: [Azure, Pricing, Authentication, Twitter, Facebook, LinkedIn]
 sharing:
     twitter: "Azure Function Plan and Pricing Tier"
     facebook: "Azure Function Plan and Pricing Tier"
     linkedin: "Azure Function Plan and Pricing Tier"
 ---
-
-
 
 ### Difference between Azure Function Plan and Pricing Tier:
 
