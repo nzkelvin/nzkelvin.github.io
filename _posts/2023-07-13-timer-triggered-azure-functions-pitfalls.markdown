@@ -31,7 +31,8 @@ Microsoft documentation provides examples and descriptions for various NCRONTAB 
 
 It's paramount to test your CRON expressions thoroughly, especially if you're working with older Azure Function projects. Additionally, always refer to Microsoft’s official documentation on [NCRONTAB expressions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-timer?tabs=python-v2%2Cin-process&pivots=programming-language-csharp#ncrontab-expressions) to ensure compatibility.
 
----
+#### ** One more thing **
+" 0 * * * * * " works and it triggers the function every minute.
 
 ### **2. Time Zone Troubles**
 
