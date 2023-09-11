@@ -4,7 +4,7 @@ comments: true
 title:  "Dynamics 365 Form Subgrid Interaction"
 date:   2023-07-06 08:00:00 +0800
 categories: Technology
-tags: [D365, PowerPlatform, Dataverse, User Experience,Frontend, JavaScript, Twitter, Facebook, LinkedIn]
+tags: [D365, PowerPlatform, Dataverse, User Experience, Frontend, JavaScript, Twitter, Facebook, LinkedIn]
 sharing:
     twitter: "Dynamics 365 Form Subgrid Interaction"
     facebook: "Dynamics 365 Form Subgrid Interaction"
