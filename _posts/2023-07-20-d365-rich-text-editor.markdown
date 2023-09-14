@@ -17,3 +17,8 @@ sharing:
 UI already support it.
 
 ### Rich text editor customization > Add html mode
+
+### default vs individual settings
+
+
+https://learn.microsoft.com/en-us/power-apps/maker/model-driven-apps/rich-text-editor-control#visualization-of-the-rich-text-editor-configuration-file
