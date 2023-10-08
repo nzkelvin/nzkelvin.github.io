@@ -82,3 +82,6 @@ This method serves as an alternative but efficient means to navigate the intrica
 #### **Conclusion**
 
 Querying the Dataverse Web API, especially amidst the maze of many-to-many relationships, is a nuanced craft. It requires understanding, patience, and adaptability. This exploration serves as a testament to the importance of understanding the underlying data structures and the relationships that bind them in Dynamics 365. It also underscores the need for iterative testing and refinement, ensuring data retrieval processes are both effective and efficient.
+
+#### **References**
+* https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/query-data-web-api#join-tables*
