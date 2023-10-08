@@ -36,6 +36,7 @@ Imagine an organization that provides its partners access to a specialized porta
 3. **Outcome**:
     - If the admin chooses "Extend Access", the partner's access is extended.
     - If "Deny Request" is chosen, the partner is notified, and their access will expire as scheduled.
+4. **Auditing**: Cannot capture the voters at all
 
 ![image](../images/2023-06-15-implementing-approval-processes-in-power-automate/approval-with-send-email-with-options.png) 
 
@@ -46,8 +47,15 @@ Imagine an organization that provides its partners access to a specialized porta
     - If approved, the partner's access is extended, and a record of this decision is logged.
     - If denied, the partner is notified, and an entry of the denial is logged for future reference.
     - If the admin does not respond within a certain period, a reminder is sent to ensure action is taken.
+4. **Auditing**: It can capture the voters, but the information is only available in the Approval Center and flow execution logs, but not in CRM.
 
 ![image](../images/2023-06-15-implementing-approval-processes-in-power-automate/approval-with-send-email-with-options.png) 
+
+### Using "An embeded email link back in CRM to approve":
+1. **Auditing**: It can capture the voters as part of the CRM audit history.
+
+## One Button Approval
+The approval request will only have one button to approve, i.e. no reject button. Rather we will use time-out to reject the request.
 
 ## In Conclusion:
 

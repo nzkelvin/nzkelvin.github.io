@@ -22,3 +22,11 @@ UI already support it.
 
 
 https://learn.microsoft.com/en-us/power-apps/maker/model-driven-apps/rich-text-editor-control#visualization-of-the-rich-text-editor-configuration-file
+
+### Relative URL vs Absolute URL
+Don't forget the /WebResources part!
+```
+/WebResources/contoso_toolbartoprte
+```
+
+https://learn.microsoft.com/en-us/power-apps/maker/model-driven-apps/rich-text-editor-control#create-and-use-advanced-configuration-for-the-rich-text-editor-control
