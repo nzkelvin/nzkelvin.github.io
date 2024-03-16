@@ -25,6 +25,33 @@ Search will be the answer and **custom dimensions** will make your query a lot m
 Logs with Microsoft.Extensions.Logging.ILogger
 Logs using Microsoft.ApplicationInsights.TelemetryClient
 
+## Technical: Dependency Injection
+First of all, you need to add the Logger class in the DI container in the Program.cs file.
+``` csharp
+var host = new HostBuilder()
+    .ConfigureFunctionsWorkerDefaults()
+    .ConfigureServices((context, services) =>
+    {
+        services.AddLogging(); // Adding logger into DI container
+        services.AddApplicationInsightsTelemetryWorkerService();
+        services.ConfigureFunctionsApplicationInsights();
+    })
+    .Build();
+
+host.Run();
+```
+
+Then you can instantiate the ILogger object in library classes.
+```csharp
+        private readonly ILogger<CrmClient> _logger;
+
+        public CrmClient(IConfiguration config,
+            ILogger<CrmClient> logger)
+        {
+            _logger = logger;
+        }
+```
+
 ## Technical: Extension Methods for ILogger
 ``` csharp
 public static class LoggerExtensions

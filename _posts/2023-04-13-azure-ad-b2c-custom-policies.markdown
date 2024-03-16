@@ -153,11 +153,11 @@ The custom page has the ```<div id="api">``` element and Azure B2C will inject U
 
 Azure AD B2C provides several out-of-the-box TechnicalProfiles like WeChat-OAuth2, AAD-AssertAccountEnabled, and AAD-DisabledUserPage. These predefined profiles follow a naming convention where the identity provider or feature is prefixed with "AAD-", similar to how books are categorized in a library based on their genre or topic.
 
-## Common Handlers
+## Common Handlers, Providers, Protocal Providers
 
 Handlers in Azure AD B2C act as intermediaries for different processes. They work much like translators, enabling different components of your custom policy to interact seamlessly with each other. Some commonly used handlers include:
 
-1. **Web.TPEngine.Providers.SelfAssertedAttributeProvider:** This handler is responsible for managing the self-asserted attributes in your custom policy. It's like a gatekeeper, making sure that the attributes presented by the user are correct and valid before they are processed further.
+1. **Web.TPEngine.Providers.SelfAssertedAttributeProvider:** This handler is responsible for managing the self-asserted attributes in your custom policy. This provider can and often will render UI components. It's like a gatekeeper, making sure that the attributes presented by the user are correct and valid before they are processed further.
 
 2. **Web.TPEngine.Providers.ClaimsTransformationProtocolProvider:** This handler performs transformations on the claims within your custom policy. Think of it as a sculptor, modifying raw clay (claims) into a desired shape (transformed claims) based on the instructions (transformations) provided.
 
@@ -174,6 +174,12 @@ In the world of Azure AD B2C, technical profiles are units of work of your custo
 3. **CryptographicKeys:** A list of cryptographic keys used in the technical profile. These keys can be thought of as secret codes necessary for ensuring secure communication.
 
 4. **InputClaimsTransformations:** A list of transformations that should be executed before any claims are sent to the claims provider or the relying party. These transformations are like pre-processing steps in a production line, ensuring that the input is in the right form before it's processed.
+
+## Scenarios
+### Copy claim
+To do so, you need to use [the CopyClaim claim transforation](https://learn.microsoft.com/en-us/azure/active-directory-b2c/general-transformations#doesclaimexist)
+
+Readonly claim doesn't seem to work.
 
 ## Logging
 
