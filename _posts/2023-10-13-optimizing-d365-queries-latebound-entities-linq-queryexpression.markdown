@@ -70,7 +70,37 @@ Once you've fetched records with a Query Expression, you can streamline further 
                     });
 ```
 
-## Query Experssion Example with LinkEntity
+## Query Experssion Example with LinkEntity for One-to-Many Relationships
+```csharp
+            // search for the portal access record
+            QueryExpression portalAccessQuery = new QueryExpression(kys_portalaccess.EntityName);
+            portalAccessQuery.Criteria.AddCondition(kys_portalaccess.kys_contactid, ConditionOperator.Equal, contactRef.Id);
+            portalAccessQuery.Criteria.AddCondition(kys_portalaccess.kys_logintypecode, ConditionOperator.Equal, (int)kys_portalaccess.kys_logintypecode_OptionSet.GroupEmailLogin);
+            portalAccessQuery.Criteria.AddCondition(kys_portalaccess.kys_contactgroupid, ConditionOperator.Equal, contactGroupRef.Id);
+            portalAccessQuery.ColumnSet.AddColumns(kys_portalaccess.kys_lastlogindatetime, kys_portalaccess.kys_logincount, kys_portalaccess.statecode, kys_portalaccess.statuscode);
+            portalAccessQuery.AddOrder(kys_portalaccess.kys_lastlogindatetime, OrderType.Descending);
+
+            // Add link-entity query_kys_contactgroup
+            var link = portalAccessQuery.AddLink(ContactGroup.EntityName, kys_portalaccess.kys_contactgroupid, ContactGroup.PrimaryKey);
+
+            // Add columns to query_kys_contactgroup.Columns
+            link.Columns.AddColumns(ContactGroup.kys_groupemailaddress);
+            link.EntityAlias = "cg";
+
+            EntityCollection portalAccessCollection = _orgService.RetrieveMultiple(portalAccessQuery);
+
+            foreach (var pa in portalAccessCollection.Entities)
+            {
+                var groupEmail = pa.GetAttributeValue<AliasedValue>("cg.kys_groupemailaddress")?.Value as string;
+            }
+```
+
+By the way, to extract value from AliasedValue, you can use the following code:
+```csharp
+
+```
+
+## Query Experssion Example with LinkEntity for Many-to-Many Relationships
 ```csharp
             QueryExpression contactGroupsQuery = new QueryExpression(ContactGroup.EntityName);
             contactGroupsQuery.ColumnSet = new ColumnSet(ContactGroup.PrimaryKey, ContactGroup.PrimaryName, ContactGroup.kys_groupemailaddress);
