@@ -1,16 +1,31 @@
 ---
 layout: post
 comments: true
-title:  "Adventures in Azure AD B2C: A Tale of User Flows, Custom Policies, and WeChat Integration"
+title:  "Getting started with Azure AD B2C: A Tale of User Flows, Custom Policies, and WeChat Integration"
 date:   2023-01-19 08:00:00 +0800
 categories: Technology
 tags: [Azure, Azure AD B2C, OAuth, OpenID, Power Pages, Twitter, Facebook, LinkedIn]
 sharing:
-    twitter: "Adventures in Azure AD B2C: A Tale of User Flows, Custom Policies, and WeChat Integration"
-    facebook: "Adventures in Azure AD B2C: A Tale of User Flows, Custom Policies, and WeChat Integration"
-    linkedin: "Adventures in Azure AD B2C: A Tale of User Flows, Custom Policies, and WeChat Integration"
+    twitter: "Getting started with Azure AD B2C: A Tale of User Flows, Custom Policies, and WeChat Integration"
+    facebook: "Getting started with Azure AD B2C: A Tale of User Flows, Custom Policies, and WeChat Integration"
+    linkedin: "Getting started with Azure AD B2C: A Tale of User Flows, Custom Policies, and WeChat Integration"
 ---
 
+## Quick Start
+Nothing better than starting with sample. Here are some best AAD B2C samples custom policy resources I found so far:
+
+[azure-ad-b2c samples](https://github.com/azure-ad-b2c/samples)
+
+[Azure-Samples/active-directory-b2c-custom-policy-starterpack](https://github.com/Azure-Samples/active-directory-b2c-custom-policy-starterpack)
+
+[Microsoft documentation](https://learn.microsoft.com/en-us/azure/active-directory-b2c/)
+
+- [A sample for adding terms and conditions to the journey](https://github.com/azure-ad-b2c/samples/tree/master/policies/sign-in-sign-up-versioned-tou)
+- [TOTP MFA](https://github.com/azure-ad-b2c/samples/blob/master/policies/totp/readme.md)
+- [Migrate from custom TOTP to OOTB JIT TOTP MFA](https://github.com/azure-ad-b2c/samples/tree/master/policies/totp#just-in-time-totp-migration)
+- [MFA with Authy app](https://github.com/azure-ad-b2c/samples/blob/master/policies/custom-mfa-authy-app/policy/TrustFrameworkExtensions.xml)
+
+## Creative Writing - Advanture in Azure AD B2C
 Once upon a time in the fantastical land of Azure, there was a magical kingdom called Azure AD B2C. This kingdom was known for its user-friendly authentication and powerful customization abilities. The citizens of the kingdom were developers from all over the world, working together to create seamless identity experiences.
 
 In this enchanted land, "User Flows" were like pre-packaged spell books filled with incantations for standard authentication scenarios. Wizards (developers) could simply open a book (select a flow) and cast a spell (implement a scenario) to conjure up a marvelous authentication experience. But the wizards soon realized that they needed more powerful spells for unique situations.
