@@ -4,7 +4,7 @@ comments: true
 title:  "The Evolution of Natural Language Processing"
 date:   2023-11-03 08:00:00 +0800
 categories: Technology
-tags: [AI, AIGC, Natural Language Processing, Dynamics, Twitter, Facebook, LinkedIn]
+tags: [AI, AIGC, Natural Language Processing, Twitter, Facebook, LinkedIn]
 sharing:
     twitter: "The Evolution of Natural Language Processing"
     facebook: "The Evolution of Natural Language Processing"

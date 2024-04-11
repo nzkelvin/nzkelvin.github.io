@@ -4,7 +4,7 @@ comments: true
 title:  "Restrict Business Process Flow (BPF) Stage Reversal/Reserve/Go Backward"
 date:   2023-10-27 08:00:00 +0800
 categories: Technology
-tags: [Microsoft, Dynamics, Twitter, Facebook, LinkedIn]
+tags: [Microsoft, D365, PowerPlatform, Dataverse, Dynamics, Twitter, Facebook, LinkedIn]
 sharing:
     twitter: "Restrict Business Process Flow (BPF) Stage Reversal/Reserve/Go Backward"
     facebook: "Restrict Business Process Flow (BPF) Stage Reversal/Reserve/Go Backward"
