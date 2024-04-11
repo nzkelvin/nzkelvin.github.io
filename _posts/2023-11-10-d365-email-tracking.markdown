@@ -37,6 +37,11 @@ The email tracking mechanism in Dynamics 365 CRM will also try to link the track
 ### Post Tracking > Email Rules
 After the emails are tracked in Dynamics 365 CRM, we can also configure record creation rules to convert the incoming emails to other records and tasks.
 
+### Tracking against Categories
+Tracking against categories is specifically for the **Customer Service app**. You have to turn it on via OrgDBOrgSettings.
+
+![image](../images/2023-11-10-d365-email-tracking/tracking-to-categories.png)
+
 ## Scenarios
 ### Scenario 1: Automatic Plus Manual Tracking
 Let's say you have already turned on tracking email conversations use correlation method in Dynamics 365 CRM. And sometimes there are missing emails in Dynamics 365 CRM, so the user can manually track the missing emails in Dynamics 365 CRM by clicking the "Track" button in the Dynamics 365 App for Outlook.
