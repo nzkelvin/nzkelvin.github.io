@@ -52,7 +52,7 @@ Dynamics 365 has a built-in mechanism recognizes that both folder-level tracking
 ### Q:How to determine if and why an email was automatically tracked?
 [Microsoft documentation](https://learn.microsoft.com/en-us/power-platform/admin/email-message-filtering-correlation#how-to-determine-if-and-why-an-email-was-automatically-tracked) provides a good explaination on how to determine if and how an email was automatically tracked.
 
-Look into the **Correlation Method** field on the email activity record is a good starting point as it determines which tracking method is used for mapping the email to the email activity records in Dynamics 365 CRM.
+Look into [the **Correlation Method** field](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/reference/email?view=dataverse-latest#properties) on the email activity record is a good starting point as it determines which tracking method is used for mapping the email to the email activity records in Dynamics 365 CRM.
 
 ![image](../images/2023-11-10-d365-email-tracking/email-tracking-correlation-method.png)
 
