@@ -22,7 +22,7 @@ sharing:
 | Tracking Method | Trigger | Trigger Source | Matching Logic | Match Target |
 | ----------------- | ----------------- | ----------------- | ----------------- | ----------------- |
 | Tracking email conversations | Automatic | Outlook Inbox Folder | Email subject, recipients and etc. | Previous email activity records |
-| Exchange folder-level tracking | Automatic | Outlook Sub-folders | Outlook folders | Contacts, Oppoortunities etc, depending on the folder tracking configuration |
+| [Exchange folder-level tracking](https://learn.microsoft.com/en-us/power-platform/admin/track-outlook-email-by-moving-it-tracked-exchange-folder) | Automatic | Outlook Sub-folders | Outlook folders | Contacts, Oppoortunities etc, depending on the folder tracking configuration |
 | Dynamics 365 App for Outlook | Manual | Manual | Manual | Manual |
 
 ### Email Ingesttion Layer > Dataset
