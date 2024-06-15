@@ -2,7 +2,7 @@
 layout: post
 comments: true
 title:  "Dynamics 365 Goal Management"
-date:   2023-11-10 08:00:00 +0800
+date:   2023-11-17 08:00:00 +0800
 categories: Technology
 tags: [D365, PowerPlatform, Dataverse, Dynamics, Twitter, Facebook, LinkedIn]
 sharing:
