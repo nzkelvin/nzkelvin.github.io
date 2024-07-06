@@ -105,6 +105,11 @@ Power Fx has two types of variables:
 ### Looping
 Use `ForAll` for looping through records.
 
+### JSON String Parsing
+You can use the [`ParseJSON` function](https://learn.microsoft.com/en-us/power-platform/power-fx/working-with-json#reading-and-converting-values) to convert a JSON string to untyped object. 
+
+To covert an object to a JSON string, you will have to resort to the `Text` function.
+
 ### Error Handling
 #### IfError
 ```yaml
@@ -204,6 +209,8 @@ While custom pages do not support traditional function calls for code reusabilit
 ```yaml
 radiobuttonCalculatorMode.OnChange = Select(btnShowCalculator)
 ```
+
+Please note that the `Select` function is excuted asynchronously. So, if execution order is important, you need to control it inside the button.
 
 Tip: You can keep the btnShowCalculator button hidden and use it solely for encapsulating logic.
 
