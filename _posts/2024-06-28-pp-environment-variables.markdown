@@ -1,14 +1,14 @@
 ---
 layout: post
 comments: true
-title:  "Environment Variables"
+title:  "PowerPlatform Environment Variables"
 date:   2024-06-21 08:00:00 +0800
 categories: Technology
 tags: [D365, PowerPlatform, Dataverse, Dynamics, Twitter, Facebook, LinkedIn]
 sharing:
-    twitter: "Environment Variables"
-    facebook: "Environment Variables"
-    linkedin: "Environment Variables"
+    twitter: "PowerPlatform Environment Variables"
+    facebook: "PowerPlatform Environment Variables"
+    linkedin: "PowerPlatform Environment Variables"
 ---
 
 ## Introduction
