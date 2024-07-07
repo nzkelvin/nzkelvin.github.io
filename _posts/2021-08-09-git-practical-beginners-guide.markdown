@@ -11,7 +11,7 @@ sharing:
     linkedin: "Git Practical Beginner's Guide"
 ---
 
-# Strategy
+# Branching Strategy/Model/Flow
 GitFlow is a popular git flow strategy. It is a solid start point and can work with CI/CD flows well.
 
 ![image](https://datasift.github.io/gitflow/GitFlowHotfixBranch.png)
@@ -20,6 +20,8 @@ Source: https://datasift.github.io/gitflow/IntroducingGitFlow.html
 
 # Theory
 ## Stages
+Changes in a git repository can potentially in the following stages:
+
 Indexed -> Staged -> Committed -> Pushed or Pulled to remote
 
 ## Concept: HEAD
@@ -191,6 +193,28 @@ git remote prune origin
 ### Scenario: delete all local branches that are already merged into master
 ``` powershell
 git branch --merged main | grep -v '^[ *]*main$' | xargs git branch -d
+```
+
+## Local Git Repository Configuration
+### Why Configure user.name and user.email?
+These settings are crucial for identifying who contributes to a Git repository's commits. This is particularly important in open-source projects where proper attribution is essential. While it's technically possible to fake this information, technical measures (like commit signing) and legal frameworks exist to protect authenticity.
+
+## Repository-Specific Configuration
+If you work on multiple projects across platforms, each with different aliases or email addresses, configuring these settings per repository is essential. This ensures that each commit is correctly attributed to the right identity.
+
+To configure user.name and user.email for a specific repository, navigate to the repository's root directory and execute:
+```powershell
+cd /path/to/your/repository
+git config user.name "Your Name"
+git config user.email "your.email@example.com"
+```
+Replace "Your Name" and "your.email@example.com" with your actual name and email address for that repository.
+
+### How to configure the settings globally
+To set a default name and email for all repositories on your system, use the following commands:
+```powershell
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
 ```
 
 ## Reference(s)
