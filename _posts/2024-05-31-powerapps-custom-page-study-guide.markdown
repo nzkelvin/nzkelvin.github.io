@@ -88,6 +88,25 @@ So for, PowerFx doesn't support FetchXML data operations in Custom Pages.
 #### AddColumn
 Use this to add calculated columns, similar to a table join.
 
+#### ShowColumns
+Use the ShowColumns function to limit the amount of columns returned. This is good for performance as well.
+```yaml
+ClearCollect(
+    colParties,
+    Filter(
+        ShowColumns(
+            'Event parties',
+            Name,
+            Event,
+        ),
+        ThisRecord.kys_event.'Event (kys_eventid)' = varEvent.'Event (kys_eventid)' && !IsBlank(ThisRecord.kys_eventid)
+    )
+);
+```
+
+### Refresh
+The Refresh function is important to keep your data up to date. However, it will NOT refresh your data collection. For that, you will need to use ClearCollection function.
+
 ### Data Table Identifiers
 #### The "@" character
 The @ character in Power Apps is used for disambiguation. It's used when you want to refer to a specific data source or table, especially when there's a column in the current context with the same name.
