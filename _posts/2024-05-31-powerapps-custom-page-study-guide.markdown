@@ -44,6 +44,9 @@ Set(RecordItem, If(IsBlank(Param("recordId")),
     )
 ```
 
+#### Screen.OnVisible
+Screen.OnVisible (the per screen level) is more performant than App.OnStart (app level).
+
 ## Power Fx
 While Power Apps formulas and Power Fx share the same underlying syntax and functionality, Power Fx is the formal, standardized, and open-source version of the formula language. Power Fx aims to extend the capabilities and consistency of the formula language across the entire Power Platform, making it a core component of Microsoft's low-code strategy.
 
@@ -51,6 +54,36 @@ While Power Apps formulas and Power Fx share the same underlying syntax and func
 - **IsBlank:** Check if a single value variable is empty.
 
 - **ISEmpty:** Check if a table has no rows.
+
+### String Manipulation
+#### DataTime value to string
+```yaml
+Text(varNextEvent.'Scheduled Start', "dd/mm/yyyy"))
+```
+
+#### String Replacement
+```yaml
+Substitute(varSelectedTemplateText, "[Next Event Duration]", varNextEvent.Duration)
+```
+
+### Special Data Types
+#### Choice
+How to display a Choice data field as text?
+```yaml
+varEventRecord.'Event Status'; // 'Event Status' is an option field.
+```
+
+How to render a Choice data field as a radio button group or dropdown list?
+```yaml
+rdgEventStatus.Item = Choices('Events'.'Event Status')
+```
+
+Reference: https://powerusers.microsoft.com/t5/Building-Power-Apps/Global-Option-Set-on-Custom-Pages/td-p/2085404
+
+How to filter base on a dropdown selection?
+```yaml
+Notify(LookUp(Choices('Events'.'Event Status'), Value = 545360001).Value);
+```
 
 ### Data Operations
 - **Filter Function:** Finds records in a table that satisfy a formula, discarding non-matching records. For example, 
