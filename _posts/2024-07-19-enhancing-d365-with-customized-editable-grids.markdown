@@ -148,5 +148,10 @@ dotnet build
 ### Implementing a Grid Customizer Control
 To implement the grid customizer control, first import the package solution into the target environment. Then, follow the detailed steps in the [Microsoft documentation](https://learn.microsoft.com/en-us/power-apps/developer/component-framework/customize-editable-grid-control#implementing-a-grid-customizer-control).
 
+### Upgrade a Grid Customizer Control
+If you make some updates to the grid control customizer, but the change didn't come through after deployment. Please try the following:
+- Update the version in the ControlManifest.Input.xml file.
+- Delete the solution and its component(s), re-import the solution.
+
 ### Final Result
 ![image](../images/2024-07-19-enhancing-d365-with-customized-editable-grids/grid-control-customizer-result.png)
