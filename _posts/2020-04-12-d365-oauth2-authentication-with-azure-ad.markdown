@@ -1,21 +1,54 @@
 ---
 layout: post
 comments: true
-title:  "Dynamics 365 OAuth 2.0 Authentication with Azure AD"
+title:  "Dynamics 365 OAuth 2.0 Authentication with a Service Principal"
 date:   2020-04-12 08:00:00 +0800
 categories: Technology
 tags: [Azure, Azure AD, OAuth, Azure Function, .Net Core, Twitter, Facebook, LinkedIn]
 sharing:
-    twitter: "Dynamics 365 OAuth 2.0 Authentication with Azure AD"
-    facebook: "Dynamics 365 OAuth 2.9 Authentication with Azure AD"
-    linkedin: "Dynamics 365 OAuth 2.0 Authentication with Azure AD"
+    twitter: "Dynamics 365 OAuth 2.0 Authentication with a Service Principal"
+    facebook: "Dynamics 365 OAuth 2.9 Authentication with a Service Principal"
+    linkedin: "Dynamics 365 OAuth 2.0 Authentication with a Service Principal"
 ---
 In a nutshell, the goal is to get a security token from Azure AD via OAuth 2.0 protocal. 
 
 There are many OAuth 2.0 and OpenID Connect flows, the flow I am focusing on is called ["OAuth 2.0 authorization code flow"](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow#protocol-diagram). A typical user case is to allow a web/native app to authenticate on its own, i.e. without popup an SSO dialog to a user, so it can communicate with target Web APIs in background jobs.
 ![image](https://docs.microsoft.com/en-us/azure/active-directory/develop/media/v2-oauth2-auth-code-flow/convergence-scenarios-native.svg)
 
-# A Step-by-step Guide
+# Service Principal pac cli Setup Guide
+Power Platform cli has streamlined the service pricipal setup. Please refer to this [blog post article](https://dynamics-chronicles.com/article/create-service-principal-power-platform-cli). 
+
+If you installed pac cli using its VSCode extension, you need to run the following command inside a VSCode terminal pane.
+Check existing auth profiles
+```powershell
+pac auth list
+```
+
+Create a new service principal
+```powershell
+pac auth create -env <env id>
+```
+
+If the command run successfully, you should receive the following results:
+```
+Application Name         PowerPlatform-CRM978zzz
+Tenant Id                570bf339-af07-xx16-a907-1a9b42454zzz
+Application Id           8a952929-9bd1-xx32-a4b4-dcd920115zzz
+Service Principal Id     a292354b-12ad-xx9e-9b7f-59260d11czzz
+Client Secret            IqS8Q~~96xxxxxvbthrZTYydDoq7DrKyP0z~~~~~
+Client Secret Expiration 12/09/2025 12:59:52 am +00:00
+System User Id           f670cd54-xxxx-ef11-xxxx-0022480abac4
+```
+
+You can go to Azure portal to double check the newly created service principal. 
+
+The service principal can be used for establish connection to D365 instance, for example, using a [connection string](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/xrm-tooling/use-connection-strings-xrm-tooling-connect) like below.
+```powershell
+$connection = Get-CrmConnection -ConnectionString "AuthType=ClientSecret;Url=https://org2a67bzzz.crm.dynamics.com/;Username=admin@CRM978zzz.onmicrosoft.com;ClientId=8a952929-9bd1-xx32-a4b4-dcd920115zzz;ClientSecret=IqS8Q~~96xxxxxvbthrZTYydDoq7DrKyP0z~~~~~"
+Write-Host $connection
+```
+
+# Service Principal Manual Setup Step-by-step Guide
 ## Azure Application Registration
 * Go to portal.azure.com and log in as an global admin of the same tenant to which the target D365 instance belongs to.
 * Create an App Registration and configure its Authentication setting to "Single Organization". (Question to myself: why not set to "multipe org"?)
