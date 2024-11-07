@@ -1,0 +1,47 @@
+---
+layout: post
+comments: true
+title:  "spkl"
+date:   2024-09-06 08:00:00 +0800
+categories: Technology
+tags: [Power Platform, Dataflow, Twitter, Facebook, LinkedIn]
+sharing:
+    twitter: "Power Platform Dataflow 101"
+    facebook: "Power Platform Dataflow 101"
+    linkedin: "Power Platform Dataflow 101"
+---
+
+
+## 
+
+
+## Installation
+* install [spkl NuGet package](https://www.nuget.org/packages/spkl)
+
+## Configuration
+### Copy necessary files to the spkl folder
+deploy-plugins.bat       
+deploy-webresources.bat  
+deploy-workflows.bat     
+download-webresources.bat
+spkl.json                
+
+The bat files actually do the jobs.
+
+### Add the configuration attribute
+CrmPluginRegistrationAttribute.cs
+
+## Code Generation
+### Custom API
+```csharp
+    [CrmPluginRegistration("courts_GrantCourtCaseAccessEvent" //"courts_GrantCaseAccessEvent"
+        , Description = "Create access team, add users to the team, grant permissions to the team on triggering of the courts_GrantCaseAccessEvent"
+        , Id = "4001e373-2581-ef11-ac20-0022489609d2")]
+    public class GrantAccess : BasePlugin
+```
+
+## References
+* https://temmyraharjo.wordpress.com/2023/02/26/dataverse-setup-spkl-from-pac-plugin-init-project/
+* https://benediktbergmann.eu/2021/06/16/add-sparkle-xrm-to-a-webresources-project/
+* http://www.sparklexrm.com/s/Tutorials/SetUpNewProject.html
+* http://www.sparklexrm.com/s/tutorials.html 

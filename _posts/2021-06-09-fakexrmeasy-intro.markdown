@@ -65,6 +65,20 @@ fakedContext.AddRelationship(TeamMembership.EntityLogicalName, new XrmFakedRelat
 });
 ```
 
+Alternatively, you can create TeamMembership records, but you will have to late bound entities.
+
+``` csharp
+    List<Entity> entites = new List<Entity>();
+
+    // Create teammembership
+    var teammembership = new Entity("teammembership");
+    teammembership["teamid"] = team.Id;
+    teammembership["systemuserid"] = memberId;
+
+    entites.Add(teammembership);
+    _context.Initialize(entites);
+```
+
 ### pluginContext
 Plugin context. You will set plugin messages here.
 
