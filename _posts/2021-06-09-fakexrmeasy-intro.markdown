@@ -28,6 +28,11 @@ The FakeXrmEasy's Nuget page: https://www.nuget.org/packages/FakeXrmEasy/
 The original documentation is available at [the FakeXrmEasy's github wiki page](https://github.com/jordimontana82/fake-xrm-easy/wiki). Its home page is almost empty. You need to checkout other pages by clicking on page links on the right navigation area. The "Working with Assertions" page is a good starting point in my opinion.
 ![image](../images/2021-06-09-fakexrmeasy-intro/fakexrmeasy-github-wiki.png)
 
+## Code Structure
+1. Setup data environment - XrmFakeContext
+1. Setup plugin context
+1. Query the data environment and assert the results
+
 ## Key Concepts
 ### The XrmFakedContext Class
 You will use the XrmFakeContext class to fake plugins data context. In other words, it is like a temporary D365 database your unit tests will interact with. You will need to initialize it.
