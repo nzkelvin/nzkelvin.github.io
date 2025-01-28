@@ -4,7 +4,7 @@ comments: true
 title:  "Understand the FakeXrmEasy Upgrades v2 and v3"
 date:   2024-10-20 08:00:00 +0800
 categories: Technology
-tags: [TypeScript, Twitter, Facebook, LinkedIn]
+tags: [Unit Tests, Twitter, Facebook, LinkedIn]
 sharing:
     twitter: "Understand the FakeXrmEasy Upgrades v2 and v3"
     facebook: "Understand the FakeXrmEasy Upgrades v2 and v3"
@@ -50,4 +50,5 @@ Only the FakeXrmEasy v3 is a real upgrade, and it is based on .NET Core 3.1 rath
 * [Good documentation to read - https://dynamicsvalue.github.io/fake-xrm-easy-docs/quickstart/migrating-from-1x/](https://dynamicsvalue.github.io/fake-xrm-easy-docs/quickstart/migrating-from-1x/)
 * [Good documentation to read - https://dynamicsvalue.github.io/fake-xrm-easy-docs/migrating-from-1x.pdf](https://dynamicsvalue.github.io/fake-xrm-easy-docs/migrating-from-1x.pdf)
 * [Getting Started with Fake Xrm Easy](https://dynamicsvalue.com/get-started/overview)
+* [Transition apps to Dataverse ServiceClient](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/sdk-client-transition)
 
