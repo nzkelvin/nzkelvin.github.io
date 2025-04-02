@@ -228,7 +228,7 @@ public refreshData(evt: Event): void {
    this._notifyOutputChanged();
 }
 ```
-By calling `_notifyOutputChanged`, the framework is informed that the control has new outputs ready to be retrieved asynchronously. In other words, the control tells is framework/context that hey, I changed, here is the output, and please act accordingly.
+By calling `_notifyOutputChanged`, the framework is informed that the control has new outputs ready to be retrieved asynchronously. In other words, the control tells its host (Power Platform) that hey, I changed, here is the output, and please act accordingly.
 
 ### getOutputs() function
 When the framework is notified by the `_notifyOutputChanged` function, it calls the `getOutputs()` function.
@@ -268,6 +268,14 @@ public updateView(context: ComponentFramework.Context<IInputs>): void {
       : "";
 }
 ```
+
+- this.refreshData.bind(this)
+```
+this._refreshData = this.refreshData.bind(this);
+```
+
+The bind function if native to JS and it will bind the this keyword to the "this" object during the component initialization.
+
 
 ### Property bags
 The "property bags" term is a generic concept, meaning a set of key-value pairs for stats/settings/configurations. In this example, it means the `context` object passed into the `init` function.
@@ -349,3 +357,13 @@ pac solution add-reference --path ..\..\
 ### Solution name
 The solution name after imported into Power Platform is the same as the solution folder name you created.
 ![image](/images/2023-02-02-pcf-101-the-missing-manual/solution-name.png)
+
+## Control Type
+Standard vs Virtual. D365 already uses React and FluentUI libraries. The new [virtual compoent](https://learn.microsoft.com/en-us/power-apps/developer/component-framework/react-controls-platform-libraries) reuses those libraries instead of pack their own React and FluentUI libraries, which is much more efficient and the way forward.
+
+## Control Data Bind Types
+Field vs Dataset.
+
+## Learning Resources
+* [Get started with Power Apps component framework](https://learn.microsoft.com/en-us/training/modules/get-started-power-apps-component-framework/)
+* 
