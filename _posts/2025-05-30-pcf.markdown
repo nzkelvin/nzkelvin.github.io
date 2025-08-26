@@ -1,0 +1,64 @@
+---
+layout: post
+comments: true
+title:  "navigation open side panel"
+date:   2025-04-03 08:00:00 +0800
+categories: Technology
+tags: [AI, Twitter, Facebook, LinkedIn]
+sharing:
+    twitter: ""
+    facebook: ""
+    linkedin: ""
+---
+
+## How to get input and output to and from PCF
+
+entry point input: context 
+
+output has two parts: the notification party and get output part 
+
+component property bags
+
+service layer: json parsing
+
+date time type
+
+-----
+UserSettings > getTimeZoneOffsetMinutes
+https://learn.microsoft.com/en-us/power-apps/developer/component-framework/reference/usersettings/gettimezoneoffsetminutes
+
+
+For format date time if we use format string we need moment
+If we use Locale string we need resx 
+
+
+Utility >  Lookup property
+https://dianabirkelbach.wordpress.com/2021/06/19/lookup-pcf-lets-dive-deeper/
+
+## Notification bar
+### UI > 
+MessageBarType
+
+### Scenario: Title and details message
+https://developer.microsoft.com/en-us/fluentui#/controls/web/messagebar
+
+### Scenario: Dismiss
+onDismiss
+
+### Scenario: Multiple notifications
+NotificationMessage[] then map to MessageBar JSX
+
+### Scenario: Timeout
+
+
+### Pagination: 
+https://markcarrington.dev/2021/02/23/msdyn365-internals-paging-gotchas/?utm_source=FetchXMLBuilder&utm_medium=XrmToolBox#multiple_linked_entities
+
+
+
+### 
+Browser event 
+
+In the Power Apps Component Framework (PCF), browser events are primarily managed through the notifyOutputChanged method and custom events defined in the component manifest. 
+
+It works better with canvas app but one issue I had is it triggers the whole PCF to refersh which leads it to loose all its states...

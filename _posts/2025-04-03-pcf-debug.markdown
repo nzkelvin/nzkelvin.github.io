@@ -1,0 +1,111 @@
+---
+layout: post
+comments: true
+title:  "PCF Debug"
+date:   2025-04-03 08:00:00 +0800
+categories: Technology
+tags: [AI, Twitter, Facebook, LinkedIn]
+sharing:
+    twitter: ""
+    facebook: ""
+    linkedin: ""
+---
+
+## Debug method
+### Debugging with local testing harness
+npm start or npm start watch
+
+You can debug the PCF code component locally but the problem is it will not load the real data therefore you cannot test it with real data.
+
+### Debugging after deployment
+After deploy, you can use browser's developer tools for debugging.
+
+### Debugging without deployment
+It definitely makes the dev/test feedback loop a lot faster with the benefit of testing it with real data. 
+
+## Requestly
+Fiddler didn't work for me either. My browser kept saying there was a suspicious network activity when Fiddler was turned on. 
+ 
+So, I tried the other method (Requestly) based on the following msdoc articles - [Debug code components - Power Apps](https://learn.microsoft.com/en-us/power-apps/developer/component-framework/debugging-custom-controls#using-requestly)
+ 
+Just at couple of things to note:
+You need to build your PCF control in production mode in order to get the bundle.js as build output
+I am using Requestly Chrome add-on for redirect network traffic to my local PCF component bundle.js. The standalone Requestly app may also work but I struggled a little bit and gave up.
+
+
+## References
+* https://learn.microsoft.com/en-us/power-apps/developer/component-framework/debugging-custom-controls#using-requestly
+
+
+----------------
+Okay, here's a revised and enriched version of your blog post draft, incorporating details from the Microsoft documentation while maintaining your personal experience and perspective.
+
+---
+
+## Debugging Your Power Apps PCF Controls: From Local Harness to Real Data
+
+Developing Power Apps Component Framework (PCF) controls unlocks powerful UI customizations, but debugging them effectively can sometimes feel tricky. Fortunately, we have several methods available, ranging from quick local checks to debugging against live Dataverse data without constant redeployments. Let's explore the main approaches.
+
+### 1. The Local Test Harness (`npm start watch`)
+
+When you first start building your component logic, the quickest way to see visual changes is using the local test harness. Running `npm start` or `npm start watch` in your project directory builds your component and pops it open in a local web page.
+
+* **Pros:**
+    * **Fast Feedback Loop:** Changes to your `index.ts`, imported modules, CSS, or resource files trigger an automatic reload in the browser. Great for rapid UI tweaks and basic logic testing.
+    * **Form Factor Testing:** Easily switch between Web, Tablet, and Phone form factors to test responsiveness.
+    * **Basic Input Simulation:** Allows you to provide mock data for properties defined in your manifest. For datasets, you can even load data from a CSV file.
+
+* **Cons:**
+    * **No Real Data Context:** This is the biggest limitation. The harness runs entirely locally. You **cannot** interact with actual Dataverse data.
+    * **Limited API Support:** Features like `context.webAPI`, dataset paging, sorting, filtering, complex lookups/choices, or navigation APIs won't work. They'll typically throw errors because the harness doesn't provide the necessary Power Apps runtime context.
+    * **Property Updates:** The `updatedProperties` array in `updateView` isn't populated correctly when you change inputs in the harness.
+
+**Verdict:** Excellent for initial development and UI layout, but insufficient for testing logic that interacts with Dataverse.
+
+### 2. Browser Developer Tools (Your Best Friend Everywhere)
+
+No matter which debugging method you use, your browser's built-in developer tools (F12 or Ctrl+Shift+I) are essential.
+
+* **Key Uses:**
+    * **Inspecting the DOM:** Use the 'Elements' tab to see the HTML structure your component generates and debug CSS styling issues.
+    * **Debugging JavaScript:** Use the 'Sources' tab. Thanks to source maps (generated during development builds via webpack), you can usually find your original TypeScript (`.ts`) file (often under `webpack://`), set breakpoints directly in your TS code, step through execution, and inspect variable values.
+    * **Console:** Check for errors and log output using `console.log()`.
+    * **Network:** Analyze API calls (though less relevant for the local harness).
+
+* **Tip:** In Power Apps Studio, the F12 key might be mapped to something else. Use **Ctrl+Shift+I** to reliably open the developer tools.
+
+### 3. Debugging Against Real Data Without Constant Redeployment (The Redirect Method)
+
+This is where things get powerful. You need to test your component with real data and interact with Dataverse APIs, but constantly rebuilding, deploying (`pac pcf push`), and publishing after every small code change is incredibly slow.
+
+The solution is to deploy your component *once* to your Dataverse environment, and then use a tool like **Fiddler** or **Requestly** to intercept the browser's request for your component's code and redirect it to your *local machine* where you're running `npm start watch`.
+
+* **The Concept:**
+    1.  **Deploy Once:** Build and deploy your PCF control to your target Dataverse environment. The Microsoft documentation recommends deploying a *production* build (`PcfBuildMode` set to `production` in `.pcfproj` or using `npm run build -- --buildMode production` before `pac pcf push`). This ensures the component structure matches what the platform expects and avoids potential size limits of development builds.
+    2.  **Run Locally:** Start your local development server using `npm start watch`. This continuously rebuilds your component locally as you make changes.
+    3.  **Intercept & Redirect:** Use Fiddler or Requestly to tell your browser: "When you try to load the `bundle.js` (and related CSS/HTML) for this specific PCF control from Dataverse, load it from my local development server instead."
+    4.  **Debug:** Open Power Apps (model-driven or canvas) where your component is configured. Your browser now loads the code directly from your local machine. Set breakpoints in your TS code using the browser dev tools, interact with your app, and debug against real data! Make code changes, save, let `npm start watch` rebuild, refresh the Power Apps browser page (a hard refresh Ctrl+Shift+R might be needed initially), and test the new code instantly.
+
+* **Tools for Redirection:**
+
+    * **Fiddler:** A powerful web debugging proxy. The MS docs detail setting up its AutoResponder feature with REGEX rules to match requests for your component's files (`bundle.js`, CSS, etc.) and map them to your local output folder (e.g., `YourProject\out\controls\YourControlName`).
+        * *My Experience:* As noted in my draft, I personally ran into issues where my browser flagged Fiddler's HTTPS decryption as suspicious network activity, making it unusable. Setup can also involve certificate installation and specific rule configurations.
+
+    * **Requestly:** A browser extension (and standalone app) focused on modifying network requests. This often feels simpler for this specific use case.
+        * *My Experience:* This worked much better for me! I used the **Requestly Chrome add-on**. The standalone app might work too, but the extension felt more straightforward.
+        * **Simplified Requestly Setup:**
+            1.  **Host Locally:** Ensure your local build output (e.g., `C:\PCFProject\out\controls\MyControl`) is accessible via a local web server. Enabling IIS on Windows and setting up a simple website pointing to this folder on a specific port (e.g., `http://localhost:7777`) is one way described in the docs.
+            2.  **Install Requestly:** Add the extension to your browser.
+            3.  **Create Rule:** Create a "Replace Host" or "Redirect Request" rule.
+                * **Source Condition:** The URL should contain a pattern unique to your deployed component, like `[YourOrg].crm.dynamics.com/WebResources/your_namespace.your_control_name` (the exact pattern might vary slightly).
+                * **Destination:** Redirect to your local server address pointing to the *specific file* being requested, often the `bundle.js`. You might need a rule like: Replace `https://[YourOrgUrl]/.../WebResources/your_namespace.your_control_name/bundle.js` with `http://localhost:7777/bundle.js`. You might need separate rules or a more flexible rule for CSS/other resources if applicable.
+            4.  **Activate & Refresh:** Enable the rule in Requestly. Clear your browser cache and perform a hard refresh (Ctrl+Shift+R) on the Power App page the first time. Subsequent code changes should only require a normal refresh.
+
+**Key Benefit:** This redirect method provides the **best of both worlds**: the rapid feedback loop of local development combined with the full context and real data of a live Dataverse environment.
+
+### Final Tips
+
+* **Source Maps:** Ensure source maps are generated in your local development build (`npm start watch` does this by default). They are crucial for debugging your original TypeScript in the browser's developer tools.
+* **ES5 vs ES6:** By default, PCF components target ES5 JavaScript for broader browser compatibility. If you only need to support modern browsers, changing the `target` in `tsconfig.json` to `ES6` can sometimes lead to cleaner transpiled code and slightly better debugging experiences, as ES6 features like classes map more directly to TypeScript. Remember to switch back to ES5 before creating your final production build if needed.
+
+By understanding these different methods, you can choose the most efficient approach for debugging your PCF controls at each stage of development. While the local harness is great for quick UI checks, mastering the redirect technique with Requestly or Fiddler is key for efficiently tackling complex issues involving real data.

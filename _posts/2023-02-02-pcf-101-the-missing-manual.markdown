@@ -354,9 +354,27 @@ pac solution add-reference --path ..\..\
 ```
 ![image](/images/2023-02-02-pcf-101-the-missing-manual/build-package-relative-path.png)
 
+Alternatively, you can add code components reference to the cdsproj file manually.
+
+```xml
+  <ItemGroup>
+    <ProjectReference Include="FetchXmlGrid\FetchXmlGrid.pcfproj" />
+    <ProjectReference Include="MultiSelectLookup\MultiSelectLookup.pcfproj" />
+  </ItemGroup>
+```
+
 ### Solution name
 The solution name after imported into Power Platform is the same as the solution folder name you created.
 ![image](/images/2023-02-02-pcf-101-the-missing-manual/solution-name.png)
+
+### Solution version and control version
+The control version is located in the cdsproj file. 
+
+The solution version is located in src\Other\Solution.xml
+
+
+### What is the difference between pcf pac push and fully package solution?
+Managed solutions.
 
 ## Control Type
 Standard vs Virtual. D365 already uses React and FluentUI libraries. The new [virtual compoent](https://learn.microsoft.com/en-us/power-apps/developer/component-framework/react-controls-platform-libraries) reuses those libraries instead of pack their own React and FluentUI libraries, which is much more efficient and the way forward.
