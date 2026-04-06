@@ -2,7 +2,7 @@
 layout: post
 comments: true
 title:  "Managed Identity"
-date:   2026-04-07 08:00:00 +0800
+date:   2026-04-07 08:00:00 +1200
 categories: Technology
 tags: [Power Platform, ALM, Azure, Integration, Twitter, Facebook, LinkedIn]
 sharing:
