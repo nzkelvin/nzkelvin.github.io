@@ -4,7 +4,7 @@ comments: true
 title:  "FakeXrmEasy Introduction"
 date:   2021-06-09 08:00:00 +0800
 categories: Technology
-tags: [Test, Unit Test, FakeXrmEasy, 101]
+tags: [Test, Unit Test, FakeXrmEasy, "101"]
 sharing:
     twitter: "FakeXrmEasy Introduction"
     facebook: "FakeXrmEasy Introduction"

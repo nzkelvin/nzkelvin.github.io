@@ -4,7 +4,7 @@ comments: true
 title:  "Git Practical Beginner's Guide"
 date:   2021-08-18 08:00:00 +0800
 categories: Technology
-tags: [Git, Github, Version Control, Repository, 101]
+tags: [Git, Github, Version Control, Repository, "101"]
 sharing:
     twitter: "Git Practical Beginner's Guide"
     facebook: "Git Practical Beginner's Guide"

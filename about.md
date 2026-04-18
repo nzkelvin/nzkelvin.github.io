@@ -1,18 +1,15 @@
 ---
-layout: page
-title: About
+layout: single
+title: "About"
 permalink: /about/
+author_profile: true
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+IT Consultant | Husband | New Zealand | China | CRM | Business Applications | Machine Learning
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+## Contact Me
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+- **Email**: [kelvinshen@outlook.com](mailto:kelvinshen@outlook.com)
+- **LinkedIn**: [linkedin.com/in/kelvinshen](https://www.linkedin.com/in/kelvinshen)
+- **Twitter**: [@kelvinshen](https://twitter.com/kelvinshen)
+- **GitHub**: [github.com/nzkelvin](https://github.com/nzkelvin)

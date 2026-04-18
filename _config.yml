@@ -1,83 +1,126 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-
 # Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-title: Kelvin Shen Blog Site | 沈煜博客
-email: kelvinshen AT outlook DOT com
-description: >- # this means to ignore newlines until "baseurl:"
-  IT Consultant | Developer | Dynamics | New Zealand | China | Microsoft | Dynamics | Power Platform | Azure | Technology | People | AI | Machine Learning
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://blog.kelvinbytes.com" # the base hostname & protocol for your site, e.g. http://example.com
+title: "Kelvin Bytes"
+subtitle: "Architect | IT Consultanting| AI | Power Platform | Technology"
+name: "Kelvin Shen"
+email: "kelvinshen@outlook.com"
+description: >-
+  Six one east and half dozen west
+url: "https://blog.kelvinbytes.com"
+baseurl: ""
 
-# Paginate
-#gems: [jekyll-paginate]
-#paginate: 10
-#paginate_path: "page:num"
-
+# Theme
+remote_theme: "mmistakes/minimal-mistakes@4.26.2"
+minimal_mistakes_skin: "default"
 
 # Build settings
-# syntax highlighter
-#highlighter: pygments
-# markdown engine
-#markdown: kramdown
+markdown: kramdown
 kramdown:
   input: GFM
   highlighter: rouge
 
-#relative_permalinks: true
-#permalink format
 permalink: /:year-:month-:day-:title.html
 
-favicon: /assets/image/favicon.ico
+# Pagination
+paginate: 10
+paginate_path: /page:num/
 
-# Author info
-author:
-  name: Kelvin Shen | 沈煜
-  email: kelvinshen AT outlook DOT com
-  link: http://blog.kelvinbytes.com/
-  github: https://github.com/nzkelvin
-  github_username: nzkelvin
-
-
-# locals:
-#   tags: 标签
-#   about: 关于
-#   active: 技术
-subscribe_rss: /pages/atom.xml
-
-avatar: /assets/image/avatar.png
-# avatar: http://7xpapo.com1.z0.glb.clouddn.com/blog/assets/image/favicon.ico
-
-# CSS files root path
-css: /assets/css/
-# css: http://7xpapo.com1.z0.glb.clouddn.com/blog/assets/css/
-
-# JS files root path
-js: /assets/js/
-# js: http://7xpapo.com1.z0.glb.clouddn.com/blog/assets/js/
-
-# Image files root path
-image: /assets/image/
-# image: http://7xpapo.com1.z0.glb.clouddn.com/blog/assets/image/
-
-# disqus settings
-disqus:
-  shortname: kelvinbytes
+# Plugins
 plugins:
   - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-include-cache
+  - jekyll-remote-theme
 
-# Exclude from processing.
+# Search
+search: true
+search_full_content: true
+
+# Author sidebar
+author:
+  name: "Kelvin Shen"
+  avatar: "/assets/image/avatar.png"
+  bio: "Solution architect by day and a family guy by night"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/nzkelvin"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/kelvinshen"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/kelvinshen"
+
+# Comments
+comments:
+  provider: "disqus"
+  disqus:
+    shortname: "kelvinbytes"
+
+# Analytics
+analytics:
+  provider: "google-gtag"
+  google:
+    tracking_id: "UA-48260695-1"
+    anonymize_ip: false
+
+# Site footer
+footer:
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/nzkelvin"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/kelvinshen"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/kelvinshen"
+
+# Reading files
+include:
+  - _pages
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      comments: true
+      author_profile: true
+      share: true
+      related: true
+      toc: true
+      toc_sticky: true
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+
+# Archives
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - _includes_old
+  - _layouts_old
+  - assets/css_old
+  - assets/js_old
+  - assets/font_old
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
 # exclude:
