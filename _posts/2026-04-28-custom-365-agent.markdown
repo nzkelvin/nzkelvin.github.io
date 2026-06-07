@@ -1,0 +1,405 @@
+---
+layout: post
+comments: true
+title:  "Custom D365 Agent"
+date:   2026-04-28 08:00:00 +1200
+categories: Technology
+tags: [Power Platform, AI, Integration, Copilot Studio, PCF, MDA]
+sharing:
+    twitter: "Custom D365 Agent"
+    facebook: "Custom D365 Agent"
+    linkedin: "Custom D365 Agent"
+---
+
+## The Problem
+
+The out-of-the-box D365 Copilot is pretty limited because its data context is restricted to the current form. For a patient management system, clinicians need an AI assistant that can:
+
+- **Summarise communication history** across emails, notes, phone calls, and appointments
+- **Fetch related patient information** from multiple tables (conditions, medications, care plans, referrals)
+- **Recommend next steps** based on clinical context and protocols
+
+This requires richer context than the built-in copilot provides.
+
+## Scenario: Patient Communication Agent
+
+A clinician opens a Patient record in a Model-Driven App. In a side pane, a custom copilot agent:
+1. Automatically receives the current patient's record ID
+2. Can query Dataverse for all communication activities (emails, phone calls, appointments, notes)
+3. Summarises the communication timeline
+4. Fetches related clinical data (conditions, medications, care team)
+5. Recommends next actions (e.g., "Patient hasn't been contacted in 30 days - consider a follow-up call")
+
+---
+
+## Architecture Options
+
+There are **two viable approaches** to build this. I recommend **Approach B** for production solutions today, while **Approach A** is worth watching for the future.
+
+---
+
+## Approach A: Native Agent APIs (Future - Preview Only)
+
+Since July 2025, Power Apps provides native `Xrm.Copilot` and PCF `context.Copilot` APIs that directly invoke Copilot Studio topics from within MDA - no separate authentication, no Direct Line token, no external SDK needed.
+
+> **⚠️ Note:** As of June 2026, this feature is still in **Public Preview** and is **not suitable for production solutions**. Preview features may change, have limited SLA, and are not covered by Microsoft support. Monitor the [release planner](https://learn.microsoft.com/en-us/power-platform/release-plans/) for GA announcements. Once GA, this becomes the recommended approach.
+
+**Reference:** [PCF + Copilot Studio: First Look at Agent APIs (Diana Birkelbach, July 2025)](https://dianabirkelbach.wordpress.com/2025/07/02/pcf-%f0%9f%a9%b7-copilot-studio-first-look-at-agent-apis/)
+
+### Prerequisites
+
+- Use [https://make.preview.powerapps.com/](https://make.preview.powerapps.com/)
+- Early release cycle environment
+- Configure an **App assistant agent** (formerly "Interactive Agent") in your MDA (App designer > Agents tab > App assistant agent > Configure in Copilot Studio)
+- Docs: [Add agents to your app](https://learn.microsoft.com/en-us/power-apps/maker/model-driven-apps/add-agents-to-app)
+- Docs: [Add app assistant agent](https://learn.microsoft.com/en-us/power-apps/maker/model-driven-apps/add-app-assistant-agent)
+
+### Frontend Architecture
+
+```
+┌─────────────────────────────────────────────────────┐
+│  Model-Driven App - Patient Form                    │
+│                                                     │
+│  ┌─────────────────────┐  ┌──────────────────────┐ │
+│  │  Patient Form        │  │  Side Pane           │ │
+│  │  (Main Content)      │  │  ┌────────────────┐  │ │
+│  │                      │  │  │ Custom Page     │  │ │
+│  │  Name: John Smith    │  │  │ ┌────────────┐ │  │ │
+│  │  DOB: 1985-03-15     │  │  │ │ PCF Chat   │ │  │ │
+│  │  Conditions: ...     │  │  │ │ Component  │ │  │ │
+│  │                      │  │  │ │            │ │  │ │
+│  │  [Open Agent] btn    │  │  │ │ Uses       │ │  │ │
+│  │                      │  │  │ │ context.   │ │  │ │
+│  │                      │  │  │ │ Copilot    │ │  │ │
+│  │                      │  │  │ └────────────┘ │  │ │
+│  │                      │  │  └────────────────┘  │ │
+│  └─────────────────────┘  └──────────────────────┘ │
+└─────────────────────────────────────────────────────┘
+```
+
+### The API
+
+Two methods are available:
+
+```javascript
+// Execute a specific topic by registered Event Name
+Xrm.Copilot.executeEvent("PatientAgent.SummariseCommunication", {
+    patientId: "00000000-0000-0000-0000-000000000001",
+    scope: "last30days"
+}).then(response => {
+    // response contains text + attachments (Adaptive Cards, etc.)
+});
+
+// Execute based on natural language trigger queries
+Xrm.Copilot.executePrompt("Summarise recent communications for this patient")
+    .then(response => { /* render response */ });
+```
+
+Within a PCF, use `context.Copilot` instead of `Xrm.Copilot`:
+
+```typescript
+// Inside PCF updateView or a button handler
+this.context.Copilot.executeEvent("PatientAgent.SummariseCommunication", {
+    patientId: recordId
+}).then(response => {
+    this.renderAgentResponse(response);
+});
+```
+
+### Passing Parameters
+
+The Agent API automatically provides the current form's `entityName` and `recordId` via global variables:
+- `Global.PA__Copilot_Model_PageContext.pageContext.id.guid`
+- `Global.PA__Copilot_Model_PageContext.pageContext.entityTypeName`
+
+For custom parameters, pass a JSON object as the second argument to `executeEvent`. In Copilot Studio, parse `Activity.Value` using the "Parse value" node.
+
+### Pros & Cons of Approach A
+
+**Pros:**
+- No Azure Entra app registration needed
+- No token endpoint management
+- No external SDK dependencies
+- Native integration - the platform handles auth
+- Automatic form context (entity name + record ID)
+- Works directly in PCF via `context.Copilot`
+
+**Cons:**
+- Requires early release cycle environment (as of mid-2025, may be GA by now)
+- Must use "App assistant agent" (not a standalone Copilot Studio agent)
+- Limited to `executeEvent` and `executePrompt` - no streaming/conversational chat UI out-of-the-box
+- For a full chat experience, you still need to build your own chat UI in the PCF
+
+---
+
+## Approach B: Custom Canvas via Direct Line (Recommended for Production)
+
+This approach uses the Bot Framework Web Chat SDK to embed a full conversational chat interface powered by a standalone Copilot Studio agent. All components are GA and production-supported.
+
+### Frontend
+
+- [D365 side panes by using a client API](https://learn.microsoft.com/en-us/power-apps/developer/model-driven-apps/clientapi/create-app-side-panes) ✅ Link valid
+- [Custom Pages in Side Panes (Diana Birkelbach)](https://dianabirkelbach.wordpress.com/2021/10/24/side-panes-custom-pages-implement-a-shopping-cart-in-mda/) ✅ Link valid
+- Inside the Custom Page, build a PCF as the chat interface using [Bot Framework Web Chat](https://github.com/microsoft/BotFramework-WebChat)
+- Use the Copilot Studio **Token Endpoint** + Direct Line to connect
+- Register an Azure Entra app for SSO authentication
+- Docs: [Customize the default canvas](https://learn.microsoft.com/en-us/microsoft-copilot-studio/customize-default-canvas)
+- Docs: [Configure SSO with Microsoft Entra ID](https://learn.microsoft.com/en-us/microsoft-copilot-studio/configure-sso)
+- Samples: [CopilotStudioSamples on GitHub](https://github.com/microsoft/CopilotStudioSamples)
+
+### Passing Record ID to the Custom Page
+
+Yes! The `navigateTo` and `pane.navigate` APIs support passing `recordId` and `entityName` to a Custom Page:
+
+```javascript
+// From form scripting - open side pane with patient context
+async function openPatientAgent(formContext) {
+    const patientId = formContext.data.entity.getId().replace(/[{}]/g, "");
+    
+    const pane = Xrm.App.sidePanes.getPane("PatientAgent") 
+        ?? await Xrm.App.sidePanes.createPane({
+            title: "Patient Agent",
+            imageSrc: "WebResources/agent_icon",
+            paneId: "PatientAgent",
+            canClose: true,
+            width: 450
+        });
+    
+    pane.navigate({
+        pageType: "custom",
+        name: "cr123_patientagentpage",  // logical name of your custom page
+        entityName: "contact",           // available via Param("entityName")
+        recordId: patientId              // available via Param("recordId")
+    });
+}
+```
+
+In the Custom Page (Canvas App), read the parameters:
+```
+// Power Fx in Custom Page
+Set(varPatientId, Param("recordId"));
+Set(varEntityName, Param("entityName"));
+```
+
+### Token Endpoint & Direct Line Connection (in PCF)
+
+```typescript
+// PCF component - initialize Web Chat
+async function initializeChat(tokenEndpoint: string) {
+    // 1. Get token from Copilot Studio token endpoint
+    const response = await fetch(tokenEndpoint);
+    const { token } = await response.json();
+    
+    // 2. Get regional Direct Line URL
+    const envEndpoint = tokenEndpoint.slice(0, tokenEndpoint.indexOf("/powervirtualagents"));
+    const apiVersion = tokenEndpoint.slice(tokenEndpoint.indexOf("api-version")).split("=")[1];
+    const settingsUrl = `${envEndpoint}/powervirtualagents/regionalchannelsettings?api-version=${apiVersion}`;
+    
+    const settingsResponse = await fetch(settingsUrl);
+    const { channelUrlsById } = await settingsResponse.json();
+    const directLineUrl = channelUrlsById.directline;
+    
+    // 3. Create Direct Line connection
+    const directLine = window.WebChat.createDirectLine({
+        domain: `${directLineUrl}v3/directline`,
+        token: token
+    });
+    
+    // 4. Render Web Chat
+    window.WebChat.renderWebChat(
+        { directLine, styleOptions },
+        document.getElementById("webchat")
+    );
+}
+```
+
+### SSO Configuration
+
+To avoid the user being prompted to sign in again inside the chat:
+1. Create an **authentication app registration** for user auth in Copilot Studio
+2. Create a **canvas app registration** (SPA) for your custom page/PCF
+3. Configure Token Exchange URL in Copilot Studio security settings
+4. Use MSAL in your PCF to acquire a token and pass it to Web Chat
+
+Reference: [Configure SSO with Entra ID](https://learn.microsoft.com/en-us/microsoft-copilot-studio/configure-sso)
+
+### Pros & Cons of Approach B
+
+**Pros:**
+- Full chat UI with conversation history, typing indicators, Adaptive Cards
+- Works with any standalone Copilot Studio agent
+- No dependency on preview features
+- More flexible - can use any Web Chat customization
+
+**Cons:**
+- More complex setup (Entra app registration, token management, SSO)
+- External SDK dependency (Bot Framework Web Chat)
+- Must manually pass context (record ID) via activity payload
+- More moving parts to maintain
+
+---
+
+## Backend: Copilot Studio Agent Design
+
+Regardless of which frontend approach you choose, the Copilot Studio agent design is the same.
+
+### Topics to Build
+
+| Topic | Trigger | Purpose |
+|-------|---------|---------|
+| Summarise Communications | Event: `PatientAgent.SummariseCommunication` or trigger phrase "summarise communications" | Fetches activities (emails, phone calls, appointments, notes) for the patient and produces a summary |
+| Patient Overview | Event: `PatientAgent.PatientOverview` or "patient overview" | Returns demographics, conditions, medications, care team |
+| Recommend Next Steps | Event: `PatientAgent.RecommendNextSteps` or "what should I do next" | Analyses gaps in care, overdue follow-ups, pending referrals |
+| Search Knowledge | Trigger phrase: free-text clinical questions | Uses Knowledge sources (SharePoint, Dataverse) to answer clinical protocol questions |
+
+### Data Access - Custom Connector or Plugin Actions
+
+Copilot Studio topics can call:
+
+1. **Power Automate Cloud Flows** (simplest)
+   - Flow receives `patientId` as input
+   - Queries Dataverse for activities: `GET /api/data/v9.2/activitypointers?$filter=_regardingobjectid_value eq '{patientId}'&$orderby=actualend desc&$top=50`
+   - Returns structured JSON to Copilot Studio
+
+2. **Custom API / Plugin Actions** (more performant)
+   - Register a Dataverse Custom API: `new_GetPatientCommunicationSummary`
+   - Input: `PatientId` (Guid)
+   - Output: structured JSON with activities, timeline, key dates
+   - Invoke from Copilot Studio via connector
+
+3. **Dataverse Knowledge Source** (for grounding)
+   - Add your Dataverse tables as Knowledge in Copilot Studio
+   - The agent can directly query patient-related tables
+
+### Example Flow: Summarise Communications
+
+```
+Trigger: Copilot Studio calls flow with patientId
+    │
+    ├─ List Activities (Dataverse connector)
+    │   Filter: regardingobjectid eq patientId
+    │   Select: subject, description, activitytypecode, actualstart, actualend
+    │   Order: actualend desc, Top: 50
+    │
+    ├─ Compose: Format activities into structured text
+    │   "Email (2026-04-01): Subject - Follow-up on lab results..."
+    │   "Phone Call (2026-03-28): Subject - Discussed medication change..."
+    │
+    └─ Return: Formatted summary text to Copilot Studio
+```
+
+Copilot Studio then uses the AI model to:
+- Synthesise the raw activity list into a natural language summary
+- Highlight key themes and recent interactions
+- Generate next-step recommendations
+
+### Generative AI Orchestration in Copilot Studio
+
+Configure the topic to use a **Generative Answers** node:
+1. Feed the structured patient data as context
+2. Use a system prompt like:
+
+```
+You are a clinical communication assistant. Given the patient's recent 
+communication history, provide:
+1. A brief summary (3-5 sentences) of key interactions
+2. Any notable patterns or concerns
+3. Recommended next steps based on gaps in communication
+
+Patient Data:
+{Topic.PatientActivities}
+```
+
+---
+
+## Approach C (Bonus): MCP Apps / Custom UI Widgets in M365 Copilot
+
+As of April 2026 (Public Preview), there's a third option: **Custom UI Widgets powered by Power Apps** that render inside M365 Copilot Chat.
+
+**Reference:** [Inside Built-In and Custom Copilot UI Widgets powered by Power Apps (Diana Birkelbach, May 2026)](https://dianabirkelbach.wordpress.com/2026/05/26/inside-built-in-and-custom-copilot-ui-widgets-powered-by-power-apps/)
+
+This approach:
+- Exports your MDA as an MCP server package
+- Deploys to M365 Copilot via Teams sideloading
+- Custom tools provide rich HTML UI widgets inside the chat
+- Uses the `@modelcontextprotocol/ext-apps` npm package for host-view communication
+
+**When to use this:** If you want the patient agent to be accessible across M365 (Outlook, Teams, Copilot Chat) rather than only inside the MDA form. It's great for scenarios where clinicians are working in Outlook and want to quickly check a patient summary without opening D365.
+
+**Limitation:** This is in preview, requires M365 Copilot Premium license, and deployment requires Teams/M365 admin access.
+
+---
+
+## Recommended Implementation Plan
+
+### Phase 1: Foundation (Week 1-2)
+
+1. **Set up environment**: Early release cycle Dataverse environment
+2. **Create data model** (if not existing): Patient (Contact), Communication Activity custom table or use OOB Activity entities
+3. **Create App assistant agent** in MDA App designer (Agents tab > App assistant agent > Configure in Copilot Studio)
+4. **Build first topic** in Copilot Studio: "Summarise Communications"
+   - Trigger: Custom client event `PatientAgent.SummariseCommunication`
+   - Parse `Activity.Value` for patientId
+   - Call Power Automate flow to fetch activities
+   - Use Generative Answers to produce summary
+
+### Phase 2: PCF Chat Component (Week 3-4)
+
+5. **Build PCF control** (React-based) with:
+   - Chat message list UI (using Fluent UI v9 components)
+   - Input box for free-text prompts
+   - Button bar for predefined actions (Summarise, Overview, Next Steps)
+   - Calls `context.Copilot.executeEvent()` or `context.Copilot.executePrompt()`
+   - Renders response text and Adaptive Card attachments
+
+6. **Create Custom Page** containing the PCF
+7. **Wire up Side Pane** via form script on Patient form's onLoad event
+
+### Phase 3: Enriched Agent (Week 5-6)
+
+8. **Add more topics**: Patient Overview, Recommend Next Steps
+9. **Add Knowledge sources**: Clinical protocols on SharePoint, Dataverse tables
+10. **Add Custom APIs** for performant data retrieval
+11. **Test with real patient data** (anonymised)
+
+### Phase 4: Polish & Productionise (Week 7-8)
+
+12. **UX polish**: Loading states, error handling, conversation history
+13. **Security review**: Ensure patient data access respects Dataverse security roles
+14. **Performance testing**: Token caching, response times
+15. **Deploy to production environment** (once Agent APIs reach GA)
+
+---
+
+## Key Links & References
+
+| Resource | URL |
+|----------|-----|
+| Side Panes Client API | [learn.microsoft.com](https://learn.microsoft.com/en-us/power-apps/developer/model-driven-apps/clientapi/create-app-side-panes) |
+| Custom Pages in Side Panes | [dianabirkelbach.wordpress.com](https://dianabirkelbach.wordpress.com/2021/10/24/side-panes-custom-pages-implement-a-shopping-cart-in-mda/) |
+| navigateTo Client API (pass recordId) | [learn.microsoft.com](https://learn.microsoft.com/en-us/power-apps/developer/model-driven-apps/clientapi/reference/xrm-navigation/navigateto) |
+| PCF + Copilot Studio Agent APIs | [dianabirkelbach.wordpress.com](https://dianabirkelbach.wordpress.com/2025/07/02/pcf-%f0%9f%a9%b7-copilot-studio-first-look-at-agent-apis/) |
+| Xrm.Copilot.executeEvent docs | [learn.microsoft.com](https://learn.microsoft.com/en-us/power-apps/developer/model-driven-apps/clientapi/reference/xrm-copilot/executeevent) |
+| Xrm.Copilot.executePrompt docs | [learn.microsoft.com](https://learn.microsoft.com/en-us/power-apps/developer/model-driven-apps/clientapi/reference/xrm-copilot/executeprompt) |
+| Add Agents to MDA (App assistant agent) | [learn.microsoft.com](https://learn.microsoft.com/en-us/power-apps/maker/model-driven-apps/add-agents-to-app) |
+| Agent Response PCF Component | [learn.microsoft.com](https://learn.microsoft.com/en-us/power-apps/maker/model-driven-apps/form-designer-add-configure-agent-response) |
+| Bring Intelligence using Agent APIs (PCF) | [learn.microsoft.com](https://learn.microsoft.com/en-us/power-apps/developer/component-framework/bring-intelligence-using-agent-apis) |
+| Customize Default Canvas (Direct Line) | [learn.microsoft.com](https://learn.microsoft.com/en-us/microsoft-copilot-studio/customize-default-canvas) |
+| Configure SSO with Entra ID | [learn.microsoft.com](https://learn.microsoft.com/en-us/microsoft-copilot-studio/configure-sso) |
+| CopilotStudioSamples (SSO) | [github.com](https://github.com/microsoft/CopilotStudioSamples/tree/main/sso/entra-id) |
+| Bot Framework Web Chat | [github.com](https://github.com/microsoft/BotFramework-WebChat) |
+| Custom UI Widgets (MCP Apps) | [dianabirkelbach.wordpress.com](https://dianabirkelbach.wordpress.com/2026/05/26/inside-built-in-and-custom-copilot-ui-widgets-powered-by-power-apps/) |
+| MCP Apps Announcement | [microsoft.com](https://www.microsoft.com/en-us/power-platform/blog/2026/04/22/custom-tools-and-rich-ui-for-app-based-conversations-are-now-in-public-preview/) |
+| Enable App MCP & Custom Widgets | [learn.microsoft.com](https://learn.microsoft.com/en-us/power-apps/maker/model-driven-apps/enable-your-app-copilot) |
+
+---
+
+## Conclusion
+
+**Verdict: This is absolutely feasible.** The recommended path for production is **Approach B** (Direct Line + Web Chat). It uses GA components (Side Panes, Custom Pages, Bot Framework Web Chat, Copilot Studio token endpoint) and gives full control over the chat experience.
+
+**Approach A** (native Agent APIs) will simplify the architecture significantly once it reaches GA - keep an eye on it. When it goes GA, you can migrate the PCF from Direct Line to `context.Copilot.executeEvent()` and drop the Entra app registration and token management entirely.
+
+For cross-M365 access (Outlook, Teams), consider adding **Approach C** (MCP Apps) later as a complementary channel.
+
+**Can I pass the form context record ID to the custom page?** → **Yes!** Use `pane.navigate({ pageType: "custom", name: "...", entityName: "contact", recordId: patientId })` and read it in the Custom Page via `Param("recordId")`.
