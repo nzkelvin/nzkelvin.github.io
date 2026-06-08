@@ -67,3 +67,4 @@ This pattern gives you full control over the email content while still leveragin
 ## Reference
 
 - [Email dynamic text - Microsoft Learn](https://learn.microsoft.com/en-us/power-apps/user/email-dynamic-text)
+- https://himbap.com/blog/?p=4541
